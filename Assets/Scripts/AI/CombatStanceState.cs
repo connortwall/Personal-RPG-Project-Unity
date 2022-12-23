@@ -16,7 +16,10 @@ namespace CW
         
         // TODO: potantially circle player or walk around them
         
-        // this fixes bug of chrqcter still walking abfter attacking
+        // use when enemy is moving towards player
+        HandleRotateTowardsTarget(enemyManager);
+        
+        // this fixes bug of character still walking after attacking
         if (enemyManager.isPerformingAction)
         {
             enemyAnimationManager.anim.SetFloat("Vertical",0, 0.1f, Time.deltaTime);
@@ -37,6 +40,40 @@ namespace CW
             return this;
         }
         // if we are in a cool down after attackign, retirn this state anc continue attacking player
+    }
+    
+    private void HandleRotateTowardsTarget(EnemyManager enemyManager)
+    {
+        
+        // rotate manually
+        if (enemyManager.isPerformingAction)
+        {
+            Vector3 direction = enemyManager.currentTarget.transform.position - enemyManager.transform.position;
+            direction.y = 0;
+            direction.Normalize();
+     
+            if (direction == Vector3.zero)
+            {
+                direction = transform.forward;
+            }
+     
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            enemyManager.transform.rotation = Quaternion.Slerp(transform.rotation,targetRotation, enemyManager.rotationSpeed / Time.deltaTime);
+        }
+        // rotate with pathfinding (navmesh agent)
+        else
+        {
+            // TODO: review this to understand
+            Vector3 relativeDirection = transform.InverseTransformDirection(enemyManager.navMeshAgent.desiredVelocity);
+            Vector3 targetVelocity = enemyManager.enemyRigidbody.velocity;
+         
+            enemyManager.navMeshAgent.enabled = true;
+            enemyManager.navMeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
+            enemyManager.enemyRigidbody.velocity = targetVelocity;
+            enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, enemyManager.navMeshAgent.transform.rotation, enemyManager.rotationSpeed / Time.deltaTime);
+        }
+        // want a hybrid system that uses navmesh and is brainless to be able to follow you easily on ground and off a cliff
+        
     }
 }
 }

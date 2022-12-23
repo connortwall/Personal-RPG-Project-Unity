@@ -33,8 +33,10 @@ namespace CW
         private LayerMask ignoreForGroundCheck;
         private InputHandler inputHandler;
         private PlayerManager playerManager;
-
-
+        
+        public CapsuleCollider characterCollider;
+        public CapsuleCollider characterCollisionBlockerCollider;
+        
         private void Awake()
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
@@ -55,6 +57,9 @@ namespace CW
             playerManager.isGrounded = true;
             // layers that are ignored in ground check
             ignoreForGroundCheck = ~((1 << 8) | (1 << 11));
+            
+            // ignore collision between character and character collider
+            Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
         }
 
         #region Movement

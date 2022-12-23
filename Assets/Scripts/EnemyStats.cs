@@ -31,6 +31,11 @@ namespace CW
 
     public void TakeDamage(int damage)
     {
+        // don't take damage if dead
+        if (isDead)
+        {
+            return;
+        }
         currentHealth = currentHealth - damage;
 
         animator.Play("Injured Stumble Idle");
@@ -40,6 +45,7 @@ namespace CW
             currentHealth = 0;
             animator.Play("Falling Back Death");
             // TODO: handle player death
+            isDead = true;
         }
     }
     

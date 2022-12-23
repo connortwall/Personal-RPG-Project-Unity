@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 
 namespace CW
 {
@@ -13,15 +15,8 @@ namespace CW
         public int staminaLevel = 10;
         public int maxStamina;
         public int currentStamina;
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
 
-        // Update is called once per frame
-        void Update()
-        {
-        }
+        public bool isDead;
+     
     }
 }

@@ -12,6 +12,7 @@ public class IdleState : State
     public void Awake()
     {
         pursueTargetState = GetComponentInChildren<PursueTargetState>();
+        detectionLayer = LayerMask.GetMask("Player");
     }
 
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager enemyAnimationManager)

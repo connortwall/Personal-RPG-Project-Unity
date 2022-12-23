@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,12 @@ public class AmbushState : State
    public LayerMask detectionLayer;
 
    public PursueTargetState pursueTargetState;
-   
+
+
+   private void Awake()
+   {
+      detectionLayer = LayerMask.GetMask("Player");
+   }
 
    public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager enemyAnimationManager)
    {

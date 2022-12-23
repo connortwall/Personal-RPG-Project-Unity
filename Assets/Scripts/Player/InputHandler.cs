@@ -44,6 +44,7 @@ namespace CW
         private PlayerManager playerManager;
         private WeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
+        private AnimatorManager animatorManager;
         private UIManager uIManager;
 
         private Vector2 movementInput;
@@ -56,6 +57,7 @@ namespace CW
             /// caling this bc we must reload weapons on addition of new wepon
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
+            animatorManager = GetComponentInChildren<AnimatorManager>();
             uIManager = FindObjectOfType<UIManager>();
         }
 
@@ -165,7 +167,7 @@ namespace CW
                 }
                 else
                 {
-                    // unable to combo is interacting
+                    // unable to combo if player is interacting
                     if (playerManager.isInteracting)
                     {
                         return;
@@ -174,6 +176,7 @@ namespace CW
                     {
                         return;
                     }
+                    animatorManager.anim.SetBool("isUsingRightHand", true);
                     playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
                 }
             }

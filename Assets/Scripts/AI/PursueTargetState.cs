@@ -15,6 +15,9 @@ public class PursueTargetState : State
         // if within attack range return combat stance stae
         // if target is out of range return this state and continue to chase target
         
+        // use when enemy is moving towards player
+        HandleRotateTowardsTarget(enemyManager);
+        
         // dont move is in process of attacking or just attacked
         if (enemyManager.isPerformingAction)
         {

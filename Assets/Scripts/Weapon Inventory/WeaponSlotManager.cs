@@ -7,6 +7,8 @@ namespace CW
 {
     public class WeaponSlotManager : MonoBehaviour
     {
+        private PlayerManager playerManager;
+        
         private WeaponHolderSlot leftHandSlot;
         private WeaponHolderSlot rightHandSlot;
         private WeaponHolderSlot backSlot;
@@ -23,6 +25,7 @@ namespace CW
 
         private void Awake()
         {
+            playerManager = GetComponentInParent<PlayerManager>();
             animator = GetComponent<Animator>();
             quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
             playerStats = GetComponentInParent<PlayerStats>();
@@ -117,23 +120,25 @@ namespace CW
         {
             rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }
-
-        public void OpenLeftDamageCollider()
+        
+        // open damage colliders for animation events
+        public void OpenDamageCollider()
         {
-            leftHandDamageCollider.EnableDamageCollider();
-        }
-        public void OpenRightDamageCollider()
-        {
-            rightHandDamageCollider.EnableDamageCollider();
+            if (playerManager.isUsingRightHand)
+            {
+                rightHandDamageCollider.EnableDamageCollider();
+            }
+            else
+            {
+                leftHandDamageCollider.EnableDamageCollider();
+            }
         }
         
-        public void CloseLeftDamageCollider()
-        {
-            leftHandDamageCollider.DisableDamageCollider();
-        }
-        public void CloseRightDamageCollider()
+        // close damage colliders for animation events
+        public void CloseDamageCollider()
         {
             rightHandDamageCollider.DisableDamageCollider();
+            leftHandDamageCollider.DisableDamageCollider();
         }
         
         #endregion
@@ -151,5 +156,17 @@ namespace CW
         }
 
         #endregion
+        
+        public void EnableCombo()
+        {
+            //anim.SetBool("canDoCombo", true);
+        }
+        
+        public void DisableCombo()
+        {
+            //anim.SetBool("canDoCombo", false);
+        }
+        
+        
     }
 }

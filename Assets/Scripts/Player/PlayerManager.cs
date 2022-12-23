@@ -20,6 +20,8 @@ namespace CW
         public bool isGrounded;
         public bool isInAir;
         public bool canDoCombo;
+        public bool isUsingRightHand;
+        public bool isUsingLeftHand;
 
         
 
@@ -40,12 +42,16 @@ namespace CW
         // Update is called once per frame
         private void Update()
         {
-            var delta = Time.deltaTime;
+            float delta = Time.deltaTime;
 
             // off at the same time as bool
             isInteracting = anim.GetBool("isInteracting");
             canDoCombo = anim.GetBool("canDoCombo");
             isInAir = anim.GetBool("isInAir");
+            
+            // set bools from animation state
+            isUsingRightHand = anim.GetBool("isUsingRightHand");
+            isUsingLeftHand = anim.GetBool("isUsingLeftHand");
             // reset flags
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;

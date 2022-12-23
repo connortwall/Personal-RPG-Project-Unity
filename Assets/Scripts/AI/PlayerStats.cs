@@ -47,6 +47,11 @@ namespace CW
 
     public void TakeDamage(int damage)
     {
+        // don't take damage if dead
+        if (isDead)
+        {
+            return;
+        }
         currentHealth = currentHealth - damage;
         healthBar.SetCurrentHealth(currentHealth);
         
@@ -57,6 +62,7 @@ namespace CW
             currentHealth = 0;
             _playerAnimatorManager.PlayTargetAnimation("Falling Back Death", true);
             // TODO: handle player death
+            isDead = true;
         }
     }
 
