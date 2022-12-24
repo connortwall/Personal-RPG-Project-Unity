@@ -51,7 +51,7 @@ namespace CW
         
         private void Awake()
         {
-            playerAttacker = GetComponent<PlayerAttacker>();
+            playerAttacker = GetComponentInChildren<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
             /// caling this bc we must reload weapons on addition of new wepon
@@ -159,26 +159,7 @@ namespace CW
         {
             if (rb_Input == true)
             {
-                if (playerManager.canDoCombo)
-                {
-                    comboFlag = true;
-                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-                    comboFlag = false;
-                }
-                else
-                {
-                    // unable to combo if player is interacting
-                    if (playerManager.isInteracting)
-                    {
-                        return;
-                    }
-                    if (playerManager.canDoCombo)
-                    {
-                        return;
-                    }
-                    animatorManager.anim.SetBool("isUsingRightHand", true);
-                    playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
-                }
+                playerAttacker.HandleRBAction();
             }
             if (rt_Input == true)
             {
