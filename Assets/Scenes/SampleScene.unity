@@ -10722,6 +10722,7 @@ MonoBehaviour:
   canDoCombo: 0
   isUsingRightHand: 0
   isUsingLeftHand: 0
+  isInvulnerable: 0
 --- !u!114 &1801328788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10783,6 +10784,7 @@ MonoBehaviour:
   isDead: 0
   healthBar: {fileID: 911928441}
   staminaBar: {fileID: 0}
+  staminaRegenerationAmount: 20
 --- !u!1 &1811235106
 GameObject:
   m_ObjectHideFlags: 0

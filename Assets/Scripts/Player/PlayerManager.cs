@@ -6,7 +6,8 @@ namespace CW
     {
         private Animator anim;
         private CameraHandler cameraHandler; 
-        private InputHandler inputHandler; 
+        private InputHandler inputHandler;
+        private PlayerStats playerStats;
         private PlayerLocomotion playerLocomotion;
         
         private InteractableUI interactableUI; 
@@ -22,6 +23,7 @@ namespace CW
         public bool canDoCombo;
         public bool isUsingRightHand;
         public bool isUsingLeftHand;
+        public bool isInvulnerable;
 
         
 
@@ -35,6 +37,7 @@ namespace CW
         {
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
+            playerStats = GetComponent<PlayerStats>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
             interactableUI = FindObjectOfType<InteractableUI>();
         }
@@ -52,6 +55,8 @@ namespace CW
             // set bools from animation state
             isUsingRightHand = anim.GetBool("isUsingRightHand");
             isUsingLeftHand = anim.GetBool("isUsingLeftHand");
+            isInvulnerable = anim.GetBool("isInvulnerable");
+            
             // reset flags
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
@@ -63,6 +68,7 @@ namespace CW
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleJumping();
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            playerStats.RegenerateStamina();
 
 
             // check for interactable objects

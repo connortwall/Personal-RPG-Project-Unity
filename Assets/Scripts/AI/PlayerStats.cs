@@ -7,18 +7,22 @@ using UnityEngine;
 namespace CW
 {
     public class PlayerStats : CharacterStats
-{
-
-    public HealthBar healthBar;
-    public StaminaBar staminaBar;
-    
-    private  PlayerAnimatorManager _playerAnimatorManager;
+    {
+        private PlayerManager playerManager;
+        public HealthBar healthBar;
+        public StaminaBar staminaBar;
+        public float staminaRegenerationAmount = 20;
+        private float staminaRegenerationTimer = 0;
+        
+        private  PlayerAnimatorManager playerAnimatorManager;
     
     private void Awake()
     {
+        playerManager = GetComponent<PlayerManager>();
+        
         healthBar = FindObjectOfType<HealthBar>();
         staminaBar = FindObjectOfType<StaminaBar>();
-        _playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
+        playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
     }
 
     // Start is called before the first frame update
@@ -39,7 +43,7 @@ namespace CW
         return maxHealth;
     }
     
-    private int SetMaxStaminaFromStaminaLevel()
+    private float SetMaxStaminaFromStaminaLevel()
     {
         maxStamina = staminaLevel * 10;
         return maxStamina;
@@ -47,6 +51,10 @@ namespace CW
 
     public void TakeDamage(int damage)
     {
+        if (playerManager.isInvulnerable)
+        {
+            return;
+        }
         // don't take damage if dead
         if (isDead)
         {
@@ -55,12 +63,12 @@ namespace CW
         currentHealth = currentHealth - damage;
         healthBar.SetCurrentHealth(currentHealth);
         
-        _playerAnimatorManager.PlayTargetAnimation("Injured Stumble Idle", true);
+        playerAnimatorManager.PlayTargetAnimation("Injured Stumble Idle", true);
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            _playerAnimatorManager.PlayTargetAnimation("Falling Back Death", true);
+            playerAnimatorManager.PlayTargetAnimation("Falling Back Death", true);
             // TODO: handle player death
             isDead = true;
         }
@@ -70,6 +78,25 @@ namespace CW
     {
         currentStamina = currentStamina - damage;
         staminaBar.SetCurrentStamina(currentStamina);
+    }
+
+    // regenerates players stamina
+    public void RegenerateStamina()
+    {
+        if (playerManager.isInteracting)
+        {
+            staminaRegenerationTimer = 0;
+        }
+        
+        else
+        {
+            staminaRegenerationTimer += Time.deltaTime;
+            if (currentStamina < maxStamina && staminaRegenerationTimer > 1f)
+            {
+                currentStamina += staminaRegenerationAmount * Time.deltaTime;
+                staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
+            }
+        }
     }
     
 }

@@ -107,6 +107,19 @@ namespace CW
         {
             anim.SetBool("canDoCombo", false);
         }
+
+        // enable invulnerability for the character
+        public void EnableIsInvulnerable()
+        {
+            anim.SetBool("isInvulnerable", true);
+        }
+        
+        // disable invulnerability for the character
+        public void DisableIsInvulnerable()
+        {
+            anim.SetBool("isInvulnerable", false);
+
+        }
         
         private void OnAnimatorMove()
         {
