@@ -8,13 +8,14 @@ namespace CW
     public class WeaponSlotManager : MonoBehaviour
     {
         private PlayerManager playerManager;
+        private PlayerInventory playerInventory;
         
         private WeaponHolderSlot leftHandSlot;
         private WeaponHolderSlot rightHandSlot;
         private WeaponHolderSlot backSlot;
 
-        private DamageCollider leftHandDamageCollider;
-        private DamageCollider rightHandDamageCollider;
+        public DamageCollider leftHandDamageCollider;
+        public DamageCollider rightHandDamageCollider;
 
         public WeaponItem attackingWeapon;
 
@@ -26,6 +27,7 @@ namespace CW
         private void Awake()
         {
             playerManager = GetComponentInParent<PlayerManager>();
+            playerInventory = GetComponentInParent<PlayerInventory>();
             animator = GetComponent<Animator>();
             quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
             playerStats = GetComponentInParent<PlayerStats>();
@@ -114,11 +116,15 @@ namespace CW
         private void LoadLeftWeaponDamageCollider()
         {
             leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            // Weapons will get damage from base weapon damage
+            leftHandDamageCollider.currentWeaponDamage = playerInventory.leftWeapon.baseDamage;
         }
         
         private void LoadRightWeaponDamageCollider()
         {
             rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            rightHandDamageCollider.currentWeaponDamage = playerInventory.rightWeapon.baseDamage;
+
         }
         
         // open damage colliders for animation events

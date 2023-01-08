@@ -5,15 +5,18 @@ namespace CW
     public class PlayerAnimatorManager : AnimatorManager
     {
         private PlayerManager playerManager;
+        private PlayerStats playerStats;
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
         private int vertical;
         private int horizontal;
         public bool canRotate;
 
+        // TODO: understand difference between initialize and awake
         public void Initialize()
         {
             playerManager = GetComponentInParent<PlayerManager>();
+            playerStats = GetComponentInParent<PlayerStats>();
             anim = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
@@ -119,6 +122,16 @@ namespace CW
         {
             anim.SetBool("isInvulnerable", false);
 
+        }
+
+        public override void TakeCriticalDamageAnimationEvent()
+        {
+            // using no animation bc the critical attack resulting in death has special sequence of instant death
+            // (rather than taking damage then dying)
+            // alternatively check if isInteracting, don't play falling and death animationn
+            playerStats.TakeDamage(playerManager.pendingCriticalDamage, false);
+            // reset pending damage
+            playerManager.pendingCriticalDamage = 0;
         }
         
         private void OnAnimatorMove()

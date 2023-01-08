@@ -17,6 +17,7 @@ namespace CW
         public bool y_Input;
         public bool rb_Input;
         public bool rt_Input;
+        public bool critical_Attack_Input;
         public bool jump_Input;
         public bool inventory_Input;
         public bool lockOn_Input;
@@ -36,6 +37,10 @@ namespace CW
         public bool lockOnFlag;
         public bool inventoryFlag;
         public float rollInputTimer;
+        
+        // need a specific transform for critical attack (or else raycast will come from ground (default))
+        public Transform criticalAttackRaycatStartPoint;
+        
         private Vector2 cameraInput;
 
         private PlayerControls inputActions;
@@ -99,6 +104,11 @@ namespace CW
                 //handle 
                 inputActions.PlayerActions.Y.performed += i => y_Input = true;
 
+                // handle critical attack
+                inputActions.PlayerActions.CriticalAttack.performed += i => critical_Attack_Input = true;
+
+                Debug.DrawRay(criticalAttackRaycatStartPoint.position,transform.TransformDirection(Vector3.forward), Color.red, 0.5f);
+
             }
 
             inputActions.Enable();
@@ -118,6 +128,7 @@ namespace CW
             HandleInventoryInput();
             HandleLockOnInput();
             HandleTwoHandInput();
+            HandleCriticalAttackInput();
         }
         
         public void HandleMoveInput(float delta)
@@ -265,6 +276,16 @@ namespace CW
                     weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
 
                 }
+            }
+        }
+
+        private void HandleCriticalAttackInput()
+        {
+            if (critical_Attack_Input)
+            {
+                // disable after use
+                critical_Attack_Input = false;
+                playerAttacker.AttemptBackstabOrRiposte();
             }
         }
     }

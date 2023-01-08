@@ -71,8 +71,9 @@ public class WeaponInventorySlot : MonoBehaviour
       }
       else
       {
-         return;
          Debug.Log("No item slot selected");
+         return;
+         
       }
       
       // load right and left weapon

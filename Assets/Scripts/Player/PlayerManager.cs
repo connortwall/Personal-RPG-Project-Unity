@@ -30,6 +30,7 @@ namespace CW
         private void Awake()
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
+            backstabCollider = GetComponentInChildren<BackstabCollider>();
         }
 
         // Start is called before the first frame update
@@ -51,6 +52,8 @@ namespace CW
             isInteracting = anim.GetBool("isInteracting");
             canDoCombo = anim.GetBool("canDoCombo");
             isInAir = anim.GetBool("isInAir");
+            // update animator is dead bool (in associated character managers)
+            anim.SetBool("isDead", playerStats.isDead);
             
             // set bools from animation state
             isUsingRightHand = anim.GetBool("isUsingRightHand");
@@ -73,6 +76,8 @@ namespace CW
 
             // check for interactable objects
             CheckForInteractableObject();
+            
+            
         }
 
         // should handle rigidbody movement

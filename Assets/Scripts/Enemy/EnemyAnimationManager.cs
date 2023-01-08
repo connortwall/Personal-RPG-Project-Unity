@@ -7,11 +7,23 @@ namespace CW
 public class EnemyAnimationManager : AnimatorManager
 {
    private EnemyManager enemyManager;
+   private EnemyStats enemyStats;
       
    private void Awake()
    {
       anim = GetComponent<Animator>();
       enemyManager = GetComponentInParent<EnemyManager>();
+      enemyStats = GetComponentInParent<EnemyStats>();
+   }
+   
+   public override void TakeCriticalDamageAnimationEvent()
+   {
+      // using no animation bc the critical attack resulting in death has special sequence of instant death
+      // (rather than taking damage then dying)
+      // alternatively check if isInteracting, don't play falling and death animationn
+      enemyStats.TakeDamage(enemyManager.pendingCriticalDamage, false);
+      // reset pending damage
+      enemyManager.pendingCriticalDamage = 0;
    }
 
    private void OnAnimatorMove()

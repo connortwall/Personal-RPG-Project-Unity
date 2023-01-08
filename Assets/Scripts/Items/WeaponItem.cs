@@ -8,6 +8,11 @@ namespace CW
         public GameObject modelPrefab;
         public bool isUnarmed;
 
+        [Header("Damage")] 
+        // TODO: tweak in game design process
+        public int baseDamage = 25;
+        public int criticalDamageMultiplier = 4;
+
         [Header("One Handed Attack Animations")]
         public string OH_Light_Attack_1;
         public string OH_Light_Attack_2;

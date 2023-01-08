@@ -238,7 +238,7 @@ namespace CW
             targetPosition = myTransform.position;
 
             // debug the ray caster in game
-            Debug.DrawRay(origin, -Vector3.up * minimumDistanceNeededToBeginFall, Color.red, 0.1f, false);
+            Debug.DrawRay(origin, -Vector3.up * minimumDistanceNeededToBeginFall, Color.blue, 0.1f, false);
             if (Physics.Raycast(origin, -Vector3.up, out hit, minimumDistanceNeededToBeginFall, ignoreForGroundCheck))
             {
                 normalVector = hit.normal;

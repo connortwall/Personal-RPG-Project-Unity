@@ -28,24 +28,33 @@ namespace CW
         maxHealth = healthLevel * 10;
         return maxHealth;
     }
-
-    public void TakeDamage(int damage)
+    
+    public void TakeDamage(int damage, bool playAnimation)
     {
         // don't take damage if dead
         if (isDead)
         {
             return;
         }
+        // reduce enemy health by damage
         currentHealth = currentHealth - damage;
 
-        animator.Play("Injured Stumble Idle");
+        if (playAnimation)
+        {
+            animator.Play("Injured Stumble Idle");
+        }
 
         if (currentHealth <= 0)
         {
-            currentHealth = 0;
-            animator.Play("Falling Back Death");
-            // TODO: handle player death
-            isDead = true;
+                currentHealth = 0;
+                if (playAnimation)
+                {
+                    animator.Play("Falling Back Death");
+                }
+                
+                // remember to update animator's isDead bool (in associated character managers)
+                isDead = true;
+               
         }
     }
     

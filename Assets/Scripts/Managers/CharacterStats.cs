@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -16,6 +17,10 @@ namespace CW
         public float maxStamina;
         public float currentStamina;
 
+        public int magicLevel = 10;
+        public float maxMagic;
+        public float currentMagic;
+        
         public bool isDead;
      
     }

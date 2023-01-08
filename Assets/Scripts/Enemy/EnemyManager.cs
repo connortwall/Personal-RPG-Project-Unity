@@ -40,6 +40,7 @@ public class EnemyManager : CharacterManager
         enemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
         enemyStats = GetComponent<EnemyStats>();
         enemyRigidbody = GetComponent<Rigidbody>();
+        backstabCollider = GetComponentInChildren<BackstabCollider>();
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         navMeshAgent.enabled = false;
     }
@@ -53,6 +54,8 @@ public class EnemyManager : CharacterManager
     {
         HandleRecoveryTimer();
         isInteracting = enemyAnimationManager.anim.GetBool("isInteracting");
+        // update animator is dead bool (in associated character managers)
+        enemyAnimationManager.anim.SetBool("isDead", enemyStats.isDead);
     }
 
     // rigid body moves better on fixed update than update

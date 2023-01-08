@@ -36,7 +36,7 @@ namespace CW
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
             if (playerStats != null)
             {
-                playerStats.TakeDamage(currentWeaponDamage);
+                playerStats.TakeDamage(currentWeaponDamage, true);
             }
         }
         
@@ -46,7 +46,7 @@ namespace CW
             
             if (enemyStats != null)
             {
-                enemyStats.TakeDamage(currentWeaponDamage);
+                enemyStats.TakeDamage(currentWeaponDamage, true);
             }
         }
     }
