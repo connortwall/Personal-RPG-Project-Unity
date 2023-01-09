@@ -10,7 +10,6 @@ namespace CW
         private PlayerLocomotion playerLocomotion;
         private int vertical;
         private int horizontal;
-        public bool canRotate;
 
         // TODO: understand difference between initialize and awake
         public void Initialize()
@@ -93,12 +92,12 @@ namespace CW
 
         public void CanRotate()
         {
-            canRotate = true;
+            anim.SetBool("canRotate", true);
         }
 
         public void StopRotation()
         {
-            canRotate = false;
+            anim.SetBool("canRotate", false);
         }
 
         public void EnableCombo()

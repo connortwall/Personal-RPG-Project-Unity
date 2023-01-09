@@ -8,6 +8,7 @@ namespace CW
         private CameraHandler cameraHandler; 
         private InputHandler inputHandler;
         private PlayerStats playerStats;
+        private PlayerAnimatorManager playerAnimatorManager;
         private PlayerLocomotion playerLocomotion;
         
         private InteractableUI interactableUI; 
@@ -31,17 +32,15 @@ namespace CW
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
             backstabCollider = GetComponentInChildren<BackstabCollider>();
-        }
-
-        // Start is called before the first frame update
-        private void Start()
-        {
+            playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
             playerStats = GetComponent<PlayerStats>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
             interactableUI = FindObjectOfType<InteractableUI>();
+
         }
+        
 
         // Update is called once per frame
         private void Update()
@@ -54,6 +53,8 @@ namespace CW
             isInAir = anim.GetBool("isInAir");
             // update animator is dead bool (in associated character managers)
             anim.SetBool("isDead", playerStats.isDead);
+            // update player animation with can rotate bool
+            playerAnimatorManager.canRotate = anim.GetBool("canRotate");
             
             // set bools from animation state
             isUsingRightHand = anim.GetBool("isUsingRightHand");
@@ -70,6 +71,7 @@ namespace CW
             inputHandler.TickInput(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleJumping();
+            playerLocomotion.HandleRotation(delta);
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
             playerStats.RegenerateStamina();
 
@@ -87,7 +89,7 @@ namespace CW
            
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
-            
+
         }
 
         // use to reset flags
