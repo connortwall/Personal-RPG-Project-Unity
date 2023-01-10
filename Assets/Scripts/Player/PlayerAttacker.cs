@@ -36,6 +36,12 @@ public class PlayerAttacker : MonoBehaviour
 
     public void HandleWeaponCombo(WeaponItem weapon)
     {
+        //check if sufficient stamina, if not return
+        if (playerStats.currentStamina <= 0)
+        {
+            return;
+        }
+        
         if (inputHandler.comboFlag)
         {
             playerAnimatorManager.anim.SetBool("canDoCombo", false);
@@ -60,6 +66,12 @@ public class PlayerAttacker : MonoBehaviour
 
     public void HandleLightAttack(WeaponItem weapon)
     {
+        //check if sufficient stamina, if not return
+        if (playerStats.currentStamina <= 0)
+        {
+            return;
+        }
+        
         // assign attacking weapon regardless
         weaponSlotManager.attackingWeapon = weapon;
         // two hand attack
@@ -79,6 +91,12 @@ public class PlayerAttacker : MonoBehaviour
     
     public void HandleHeavyAttack(WeaponItem weapon)
     {
+        //check if sufficient stamina, if not return
+        if (playerStats.currentStamina <= 0)
+        {
+            return;
+        }
+        
         // two hand attack
         if (inputHandler.twoHandFlag)
         {

@@ -47,6 +47,7 @@ namespace CW
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
+        private PlayerStats playerStats;
         private WeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
         private AnimatorManager animatorManager;
@@ -59,7 +60,8 @@ namespace CW
             playerAttacker = GetComponentInChildren<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
-            /// caling this bc we must reload weapons on addition of new wepon
+            playerStats = GetComponent<PlayerStats>();
+            // calling this bc we must reload weapons on addition of new wepon
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
             animatorManager = GetComponentInChildren<AnimatorManager>();
@@ -87,6 +89,11 @@ namespace CW
                 
                 // handle select
                 inputActions.PlayerActions.SelectButton.performed += i => aInput = true;
+                
+                // handle roll input
+                // when input is cancelled
+                inputActions.PlayerActions.Roll.performed += i => b_input = true;
+                inputActions.PlayerActions.Roll.canceled += i => b_input = false;
                 
                 // handle jump input
                 inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
@@ -144,20 +151,29 @@ namespace CW
         {
             // will detect when key is pressed and make bool true
             //b_input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
-            b_input = inputActions.PlayerActions.Roll.IsPressed();
-            sprintFlag = b_input;
-         
+            //b_input = inputActions.PlayerActions.Roll.IsPressed();
+
             if (b_input)
             {
                 rollInputTimer += delta;
-                sprintFlag = true;
+                if (playerStats.currentStamina <= 0)
+                {
+                    b_input = false;
+                    sprintFlag = false;
+                }
+
+                if (moveAmount > 0.5f && playerStats.currentStamina > 0)
+                {
+                    sprintFlag = true;
+                }
             }
             else
             {
+                sprintFlag = false;
+                
                 // tapping b
                 if (rollInputTimer > 0 && rollInputTimer < 0.5f)
                 {
-                    sprintFlag = false;
                     rollFlag = true;
                 }
 

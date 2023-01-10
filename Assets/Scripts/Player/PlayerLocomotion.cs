@@ -8,6 +8,7 @@ namespace CW
     {
         public Vector3 moveDirection;
         private CameraHandler cameraHandler;
+        private PlayerStats playerStats;
         [HideInInspector] public Transform myTransform;
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         public new Rigidbody rigidbody;
@@ -29,6 +30,12 @@ namespace CW
         [SerializeField] private float sprintSpeed = 7;
         [SerializeField] private float rotationSpeed = 10;
         [SerializeField] private float fallingSpeed = 700;
+
+        [Header("Stamina Costs")] [SerializeField]
+        private int rollStaminaCost = 15;
+        private int backstepStaminaCost = 12;
+        private int sprintStaminaCost = 1;
+        
         private Transform cameraObject;
         private LayerMask ignoreForGroundCheck;
         private InputHandler inputHandler;
@@ -40,11 +47,8 @@ namespace CW
         private void Awake()
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
-        }
-
-        private void Start()
-        {
             playerManager = GetComponent<PlayerManager>();
+            playerStats = GetComponent<PlayerStats>();
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
 
@@ -60,7 +64,9 @@ namespace CW
             
             // ignore collision between character and character collider
             Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
+
         }
+        
 
         #region Movement
 
@@ -154,6 +160,7 @@ namespace CW
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
                 moveDirection *= speed;
+                playerStats.TakeStaminaDamage(sprintStaminaCost);
             }
 
             else
@@ -197,6 +204,12 @@ namespace CW
             // dont want tpo roll while interacting
             if (playerAnimatorManager.anim.GetBool("isInteracting")) return;
 
+            //check if sufficient stamina, if not return
+            if (playerStats.currentStamina <= 0)
+            {
+                return;
+            }
+            
             if (inputHandler.rollFlag)
             {
                 moveDirection = cameraObject.forward * inputHandler.vertical;
@@ -208,10 +221,14 @@ namespace CW
                     moveDirection.y = 0;
                     var rollRotation = Quaternion.LookRotation(moveDirection);
                     myTransform.rotation = rollRotation;
+                    // take stamina damage
+                    playerStats.TakeStaminaDamage(rollStaminaCost);
                 }
                 else
                 {
                     playerAnimatorManager.PlayTargetAnimation("StandingDodgeBackward", true);
+                    playerStats.TakeStaminaDamage(backstepStaminaCost);
+
                 }
             }
         }
