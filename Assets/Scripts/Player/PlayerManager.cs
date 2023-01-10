@@ -120,10 +120,12 @@ namespace CW
             if (isInAir) playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
         }
 
+        #region Player Interactions
         public void CheckForInteractableObject()
         {
             RaycastHit hit;
 
+            // look for any object that is interactable
             if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f,
                     cameraHandler.ignoreLayers))
             {
@@ -157,5 +159,16 @@ namespace CW
                 }
             }
         }
+
+        public void OpenChestInteraction(Transform playerStandsHereWhenOpeningChest)
+        {
+            // freeze character first to prevent "ice skating effect"
+            playerLocomotion.rigidbody.velocity = Vector3.zero;
+            transform.position = playerStandsHereWhenOpeningChest.transform.position;
+            playerAnimatorManager.PlayTargetAnimation("Opening A Lid", true);
+
+        }
+        
+        #endregion
     }
 }
