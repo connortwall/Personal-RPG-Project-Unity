@@ -20,7 +20,6 @@ namespace CW
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
-        
         healthBar = FindObjectOfType<HealthBar>();
         staminaBar = FindObjectOfType<StaminaBar>();
         magicBar = FindObjectOfType<MagicBar>();
@@ -144,6 +143,10 @@ namespace CW
         }
         magicBar.SetCurrentMagic(currentMagic);
     }
-    
+
+    public void AddExp(int exp)
+    {
+        expCount = expCount + exp;
+    }
 }
 }

@@ -26,6 +26,24 @@ public class EnemyAnimationManager : AnimatorManager
       enemyManager.pendingCriticalDamage = 0;
    }
 
+   // want a delay on receiving exp
+   public void AwardExpOnDeath()
+   {
+      PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+      // use for loop if multiple players
+      ExpCountBar expCountBar = FindObjectOfType<ExpCountBar>();
+      
+      if (playerStats != null)
+      {
+         playerStats.AddExp(enemyStats.expAwardedOnDeath);
+         
+         if (expCountBar != null)
+         {
+            expCountBar.SetExpCountText(playerStats.expCount);
+         }
+      }
+      
+   }
    private void OnAnimatorMove()
    {
 
@@ -37,5 +55,6 @@ public class EnemyAnimationManager : AnimatorManager
    Vector3 velocity = deltaPosition / delta;
    enemyManager.enemyRigidbody.velocity = velocity;
    }
+   
 }
 }

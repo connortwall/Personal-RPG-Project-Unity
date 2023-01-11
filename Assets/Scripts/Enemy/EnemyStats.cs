@@ -7,13 +7,15 @@ using UnityEngine;
 namespace CW
 {
     public class EnemyStats : CharacterStats
-{
+{  
+    private EnemyAnimationManager enemyAnimationManager;
 
-    private Animator animator;
+    // base exp award ed
+    public int expAwardedOnDeath = 50;
     
     private void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
+        enemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
     }
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ namespace CW
         maxHealth = healthLevel * 10;
         return maxHealth;
     }
-    
+
     public void TakeDamage(int damage, bool playAnimation)
     {
         // don't take damage if dead
@@ -36,27 +38,36 @@ namespace CW
         {
             return;
         }
+
         // reduce enemy health by damage
         currentHealth = currentHealth - damage;
-
-        if (playAnimation)
-        {
-            animator.Play("Injured Stumble Idle");
-        }
-
+        
         if (currentHealth <= 0)
         {
-                currentHealth = 0;
-                if (playAnimation)
-                {
-                    animator.Play("Falling Back Death");
-                }
+            HandleDeath(playAnimation);
+        }
+
+}
+
+    private void HandleDeath(bool playAnimation)
+    {
+        currentHealth = 0;
+        if (playAnimation)
+        {
+            enemyAnimationManager.PlayTargetAnimation("Falling Back Death", true);
+        }
                 
-                // remember to update animator's isDead bool (in associated character managers)
-                isDead = true;
-               
+        // remember to update animator's isDead bool (in associated character managers)
+        isDead = true;
+        
+        //scan for every player in the scene, award them souls
+        // could search for player who damages enemy
+        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+
+        if (playerStats != null)
+        {
+            playerStats.AddExp(expAwardedOnDeath);
         }
     }
-    
 }
 }

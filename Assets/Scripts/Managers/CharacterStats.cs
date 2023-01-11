@@ -20,6 +20,9 @@ namespace CW
         public int magicLevel = 10;
         public float maxMagic;
         public float currentMagic;
+
+        // start game with 0
+        public int expCount = 0;
         
         public bool isDead;
      
