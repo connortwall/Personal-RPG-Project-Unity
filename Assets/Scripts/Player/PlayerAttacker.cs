@@ -1,6 +1,7 @@
 using System;
 using System.Xml.Schema;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace CW
 {
@@ -17,7 +18,9 @@ public class PlayerAttacker : MonoBehaviour
     public string lastAttack;
 
     // its on layer 12, search on layer 12
-    [SerializeField] private LayerMask backstabLayer = 1 << 12;
+    private LayerMask backstabLayer = 1 << 12;
+    // 13th
+    private LayerMask riposteLayer = 1 << 13;
 
     public void Awake()
     {
@@ -200,8 +203,9 @@ public class PlayerAttacker : MonoBehaviour
         
         Debug.Log("attempting critical");
         if (Physics.Raycast(inputHandler.criticalAttackRaycatStartPoint.position,
-                transform.TransformDirection(Vector3.forward), out hit, 2f, backstabLayer))
+                transform.TransformDirection(Vector3.forward), out hit, .5f, backstabLayer))
         {
+            Debug.Log("attempting backstab");
             CharacterManager enemyCharacterManager = hit.transform.gameObject.GetComponentInParent<CharacterManager>();
             //damage logic for critical
             DamageCollider rightWeapon = weaponSlotManager.rightHandDamageCollider;
@@ -212,10 +216,10 @@ public class PlayerAttacker : MonoBehaviour
                 // check for team ID so you cant backstab allies or self
                 // pull player into a transform behind enemy so backstab animation is clean
                 // TODO: can use lerp to make transition smoother
-                playerManager.transform.position = enemyCharacterManager.backstabCollider.backstabberStandPosition.position;
+                playerManager.transform.position = enemyCharacterManager.backstabCollider.criticalDamagerStandPosition.position;
                 // rotate player toards the transform
                 Vector3 rotationDirection = playerManager.transform.eulerAngles;
-                rotationDirection = hit.transform.position - playerManager.transform.position;
+                rotationDirection.y = 0;
                 rotationDirection.Normalize();
                 Quaternion tr = Quaternion.LookRotation(rotationDirection);
                 Quaternion targetRotation = Quaternion.Slerp(playerManager.transform.rotation, tr, 500 * Time.deltaTime);
@@ -235,6 +239,39 @@ public class PlayerAttacker : MonoBehaviour
 
             }
         }
+        
+        
+        else if (Physics.Raycast(inputHandler.criticalAttackRaycatStartPoint.position,
+                     transform.TransformDirection(Vector3.forward), out hit, 2f, riposteLayer))
+        {
+            
+            // check for team id
+            CharacterManager enemyCharacterManager = hit.transform.gameObject.GetComponentInParent<CharacterManager>();
+            DamageCollider rightWeapon = weaponSlotManager.rightHandDamageCollider;
+
+            if (enemyCharacterManager != null && enemyCharacterManager.canBeRiposted)
+            {
+                Debug.Log("attempting parry riposte");
+                playerManager.transform.position = enemyCharacterManager.riposteCollider.criticalDamagerStandPosition.position;
+
+                Vector3 rotationDirection = playerManager.transform.root.eulerAngles;
+                rotationDirection = hit.transform.position - playerManager.transform.position;
+                rotationDirection.y = 0; 
+                rotationDirection.Normalize();
+                Quaternion tr = Quaternion.LookRotation(rotationDirection);
+                Quaternion targetRotation = Quaternion.Slerp(playerManager.transform.rotation, tr, 500 * Time.deltaTime);
+                playerManager.transform.rotation = targetRotation;
+            
+                // having these variables separated allows for buffs and other modification later
+                int criticalDamage = playerInventory.rightWeapon.criticalDamageMultiplier *
+                                 rightWeapon.currentWeaponDamage;
+            // assign damage to enemy
+            enemyCharacterManager.pendingCriticalDamage = criticalDamage;
+            playerAnimatorManager.PlayTargetAnimation("riposte_stab", true);
+            enemyCharacterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("riposted", true);
+            }
+        }
+
     }
 }
 }

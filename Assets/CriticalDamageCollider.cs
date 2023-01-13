@@ -6,10 +6,10 @@ namespace CW
 {
     
 
-public class BackstabCollider : MonoBehaviour
+public class CriticalDamageCollider : MonoBehaviour
 {
   // where the backstabber stands during animation
-  public Transform backstabberStandPosition;
+  public Transform criticalDamagerStandPosition;
   
   
 }

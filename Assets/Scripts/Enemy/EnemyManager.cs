@@ -40,7 +40,7 @@ public class EnemyManager : CharacterManager
         enemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
         enemyStats = GetComponent<EnemyStats>();
         enemyRigidbody = GetComponent<Rigidbody>();
-        backstabCollider = GetComponentInChildren<BackstabCollider>();
+        //backstabCollider = GetComponentInChildren<CriticalDamageCollider>();
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         navMeshAgent.enabled = false;
     }

@@ -31,7 +31,7 @@ namespace CW
         private void Awake()
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
-            backstabCollider = GetComponentInChildren<BackstabCollider>();
+            backstabCollider = GetComponentInChildren<CriticalDamageCollider>();
             playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
