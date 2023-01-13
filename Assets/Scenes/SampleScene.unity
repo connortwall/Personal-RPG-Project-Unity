@@ -3046,6 +3046,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6350650337545453737, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
+      propertyPath: weaponsInventory.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 551ccd012831d471a8ff014d00b512ec, type: 2}
     - target: {fileID: 6350650337545453739, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
       propertyPath: healthBar
       value: 

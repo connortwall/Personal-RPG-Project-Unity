@@ -17,6 +17,7 @@ namespace CW
         public bool y_Input;
         public bool rb_Input;
         public bool rt_Input;
+        public bool lefttrigger_Input;
         public bool critical_Attack_Input;
         public bool jump_Input;
         public bool inventory_Input;
@@ -82,6 +83,7 @@ namespace CW
                 // handle attack input
                 inputActions.PlayerActions.RB.performed += i => rb_Input = true;
                 inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+                inputActions.PlayerActions.LeftTrigger.performed += inputActions => lefttrigger_Input = true;
                 
                 // handle quick slot
                 inputActions.PlayerActions.DPadRight.performed += i => d_Pad_Right = true;
@@ -191,6 +193,19 @@ namespace CW
             if (rt_Input == true)
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+            }
+
+            if (lefttrigger_Input)
+            {
+                // if two handing handle weapon animation
+                if (twoHandFlag)
+                {
+                    // else handle light attack if melee weapon handle weapon art
+                    // handle sheild attack
+                    playerAttacker.HandleLTAction();
+                }
+                
+                
             }
         }
 

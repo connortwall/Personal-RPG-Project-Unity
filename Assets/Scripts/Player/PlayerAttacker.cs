@@ -134,6 +134,19 @@ public class PlayerAttacker : MonoBehaviour
         }
         
     }
+
+    public void HandleLTAction()
+    {
+        if (playerInventory.leftWeapon.isShieldWeapon)
+        {
+            // perform shield weapon art
+            PerformLTWeaponArt(inputHandler.twoHandFlag);
+        }
+        else if (playerInventory.leftWeapon.isMeleeWeapon)
+        {
+            // perform light attack
+        }
+    }
     #endregion
 
     #region Attack Actions
@@ -185,6 +198,25 @@ public class PlayerAttacker : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void PerformLTWeaponArt(bool isTwoHanding)
+    {
+        if (playerManager.isInteracting)
+        {
+            return;
+        }
+        // if two ahanding perfrom 
+        if (isTwoHanding)
+        {
+        }
+        else
+        {
+            playerAnimatorManager.PlayTargetAnimation(playerInventory.leftWeapon.weapon_art, true);
+        // else perfom left handed weapon animaiton
+        }
+        
+      
     }
 
     // having a successfully cast spell here allows for
