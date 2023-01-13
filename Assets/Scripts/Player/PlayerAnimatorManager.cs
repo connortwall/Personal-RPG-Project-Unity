@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace CW
@@ -121,6 +122,27 @@ namespace CW
         {
             anim.SetBool("isInvulnerable", false);
 
+        }
+
+        // can use these as animation events bc they exist on thw same level as animation events
+        public void EnableIsParrying()
+        {
+            playerManager.isParrying = true;
+        }
+        
+        public void DisableIsParrying()
+        {
+            playerManager.isParrying = false;
+        }
+
+        public void EnableCanBeRiposted()
+        {
+            playerManager.canBeRiposted = true;
+        }
+        
+        public void DisableCanBeRiposted()
+        {
+            playerManager.canBeRiposted = false;
         }
 
         public override void TakeCriticalDamageAnimationEvent()

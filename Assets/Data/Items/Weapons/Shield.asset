@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: f05b95fb7a60e4916919512e7a3fbf96, type: 3}
   itemName: Shield
-  modelPrefab: {fileID: 3897805855367130361, guid: 1b0b1d86f08284f1ca59755d713a6a6d, type: 3}
+  modelPrefab: {fileID: 8146921982716087339, guid: 8e68dfbe6617648b5a6fca2a0645227c, type: 3}
   isUnarmed: 0
   baseDamage: 25
   criticalDamageMultiplier: 4
@@ -24,7 +24,7 @@ MonoBehaviour:
   th_light_attack_01: 
   th_light_attack_02: 
   th_heavy_attack_01: 
-  weapon_art: 
+  weapon_art: parry
   right_hand_idle: Right_Arm_Idle_01
   left_hand_idle: Left_Arm_Idle_01
   two_hand_idle: great sword idle
@@ -34,5 +34,5 @@ MonoBehaviour:
   isSpellCaster: 0
   isFaithCaster: 0
   isPyroCaster: 0
-  isMeleeWeapon: 1
+  isMeleeWeapon: 0
   isShieldWeapon: 1

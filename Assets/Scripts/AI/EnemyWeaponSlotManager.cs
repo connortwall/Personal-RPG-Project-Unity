@@ -79,12 +79,14 @@ public class EnemyWeaponSlotManager : MonoBehaviour
       {
          // find damage collider and assign it
          leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+         leftHandDamageCollider.characterManager = GetComponentInParent<CharacterManager>();
       }
       // is right hand
       else
       {
          // find damage collider and assign it
          rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+         rightHandDamageCollider.characterManager = GetComponentInParent<CharacterManager>();
 
       }
       

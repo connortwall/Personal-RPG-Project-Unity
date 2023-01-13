@@ -2321,6 +2321,7 @@ MonoBehaviour:
   backstabCollider: {fileID: 1112376641}
   riposteCollider: {fileID: 101667443}
   canBeRiposted: 1
+  isParrying: 0
   pendingCriticalDamage: 0
   enemyAttacks:
   - {fileID: 11400000, guid: 8ab11bb0c530d425192fe74a464fcd81, type: 2}
@@ -3047,9 +3048,29 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6350650337545453737, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
+      propertyPath: weaponsInventory.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350650337545453737, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
       propertyPath: weaponsInventory.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 551ccd012831d471a8ff014d00b512ec, type: 2}
+    - target: {fileID: 6350650337545453737, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
+      propertyPath: weaponsInLeftHandSlots.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350650337545453737, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
+      propertyPath: weaponsInRightHandSlots.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350650337545453737, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
+      propertyPath: weaponsInLeftHandSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 551ccd012831d471a8ff014d00b512ec, type: 2}
+    - target: {fileID: 6350650337545453737, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
+      propertyPath: weaponsInRightHandSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 706b0f385b4944f2a88d8c76916ca288, type: 2}
     - target: {fileID: 6350650337545453739, guid: 1c61a679bc2304f0386e6f2da387fcbf, type: 3}
       propertyPath: healthBar
       value: 

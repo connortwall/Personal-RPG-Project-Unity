@@ -202,6 +202,9 @@ namespace CW
                 {
                     // else handle light attack if melee weapon handle weapon art
                     // handle sheild attack
+                }
+                else
+                {
                     playerAttacker.HandleLTAction();
                 }
                 
