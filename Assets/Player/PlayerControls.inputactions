@@ -207,6 +207,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Left Bumper",
+                    "type": "Button",
+                    "id": "9cffe6f5-70a8-4a3b-9d1d-1267509d2b9f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Critical Attack",
                     "type": "Button",
                     "id": "c3122f15-d3e7-4e68-af2f-514e90176c2d",
@@ -219,6 +228,15 @@
                     "name": "RT",
                     "type": "Button",
                     "id": "1d9744e6-9c4b-4386-9158-e5d5612849a8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left Trigger",
+                    "type": "Button",
+                    "id": "a8054608-01d3-4d3e-8b7f-3ca512673830",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -282,15 +300,6 @@
                     "name": "Y",
                     "type": "Button",
                     "id": "30cba32c-cfc1-4773-9551-9eb3d2d6e6f8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Left Trigger",
-                    "type": "Button",
-                    "id": "a8054608-01d3-4d3e-8b7f-3ca512673830",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -553,6 +562,28 @@
                 },
                 {
                     "name": "",
+                    "id": "eef58f23-52db-42d9-96ff-8c02c9533968",
+                    "path": "<Keyboard>/q",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Bumper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f756aeee-a01b-473b-ae80-2d8995114c78",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Bumper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "beea1bf2-b8b4-43bd-ba63-8bf75fe3a516",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -565,7 +596,7 @@
                 {
                     "name": "",
                     "id": "cfbea194-b1b9-4ee8-b7ea-1d58b95b5eea",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -45,7 +45,7 @@ namespace CW
                 if (enemyCharacterManager.isParrying)
                 {
                     //check if player is parryable
-                    characterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("riposted",true);
+                    characterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("parried",true);
                     return;
                 }
             }
@@ -65,7 +65,7 @@ namespace CW
                 if (enemyCharacterManager.isParrying)
                 {
                     //check if player is parryable
-                    characterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("riposted",true);
+                    characterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("parried",true);
                     return;
                 }
             }

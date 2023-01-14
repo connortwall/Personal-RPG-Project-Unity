@@ -229,6 +229,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Left Bumper"",
+                    ""type"": ""Button"",
+                    ""id"": ""9cffe6f5-70a8-4a3b-9d1d-1267509d2b9f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Critical Attack"",
                     ""type"": ""Button"",
                     ""id"": ""c3122f15-d3e7-4e68-af2f-514e90176c2d"",
@@ -241,6 +250,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""RT"",
                     ""type"": ""Button"",
                     ""id"": ""1d9744e6-9c4b-4386-9158-e5d5612849a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left Trigger"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8054608-01d3-4d3e-8b7f-3ca512673830"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -304,15 +322,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""Y"",
                     ""type"": ""Button"",
                     ""id"": ""30cba32c-cfc1-4773-9551-9eb3d2d6e6f8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Left Trigger"",
-                    ""type"": ""Button"",
-                    ""id"": ""a8054608-01d3-4d3e-8b7f-3ca512673830"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -575,6 +584,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""eef58f23-52db-42d9-96ff-8c02c9533968"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left Bumper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f756aeee-a01b-473b-ae80-2d8995114c78"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left Bumper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""beea1bf2-b8b4-43bd-ba63-8bf75fe3a516"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
@@ -587,7 +618,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cfbea194-b1b9-4ee8-b7ea-1d58b95b5eea"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -612,8 +643,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
         m_PlayerActions_Roll = m_PlayerActions.FindAction("Roll", throwIfNotFound: true);
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_LeftBumper = m_PlayerActions.FindAction("Left Bumper", throwIfNotFound: true);
         m_PlayerActions_CriticalAttack = m_PlayerActions.FindAction("Critical Attack", throwIfNotFound: true);
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
+        m_PlayerActions_LeftTrigger = m_PlayerActions.FindAction("Left Trigger", throwIfNotFound: true);
         m_PlayerActions_DPadUp = m_PlayerActions.FindAction("D-Pad Up", throwIfNotFound: true);
         m_PlayerActions_DPadDown = m_PlayerActions.FindAction("D-Pad Down", throwIfNotFound: true);
         m_PlayerActions_DPadLeft = m_PlayerActions.FindAction("D-Pad Left", throwIfNotFound: true);
@@ -621,7 +654,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_SelectButton = m_PlayerActions.FindAction("Select Button", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_Y = m_PlayerActions.FindAction("Y", throwIfNotFound: true);
-        m_PlayerActions_LeftTrigger = m_PlayerActions.FindAction("Left Trigger", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -742,8 +774,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_Roll;
     private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_LeftBumper;
     private readonly InputAction m_PlayerActions_CriticalAttack;
     private readonly InputAction m_PlayerActions_RT;
+    private readonly InputAction m_PlayerActions_LeftTrigger;
     private readonly InputAction m_PlayerActions_DPadUp;
     private readonly InputAction m_PlayerActions_DPadDown;
     private readonly InputAction m_PlayerActions_DPadLeft;
@@ -751,7 +785,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_SelectButton;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_Y;
-    private readonly InputAction m_PlayerActions_LeftTrigger;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -760,8 +793,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @Roll => m_Wrapper.m_PlayerActions_Roll;
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
+        public InputAction @LeftBumper => m_Wrapper.m_PlayerActions_LeftBumper;
         public InputAction @CriticalAttack => m_Wrapper.m_PlayerActions_CriticalAttack;
         public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
+        public InputAction @LeftTrigger => m_Wrapper.m_PlayerActions_LeftTrigger;
         public InputAction @DPadUp => m_Wrapper.m_PlayerActions_DPadUp;
         public InputAction @DPadDown => m_Wrapper.m_PlayerActions_DPadDown;
         public InputAction @DPadLeft => m_Wrapper.m_PlayerActions_DPadLeft;
@@ -769,7 +804,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @SelectButton => m_Wrapper.m_PlayerActions_SelectButton;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @Y => m_Wrapper.m_PlayerActions_Y;
-        public InputAction @LeftTrigger => m_Wrapper.m_PlayerActions_LeftTrigger;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -791,12 +825,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @RB.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRB;
                 @RB.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRB;
                 @RB.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRB;
+                @LeftBumper.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftBumper;
+                @LeftBumper.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftBumper;
+                @LeftBumper.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftBumper;
                 @CriticalAttack.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCriticalAttack;
                 @CriticalAttack.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCriticalAttack;
                 @CriticalAttack.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnCriticalAttack;
                 @RT.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
                 @RT.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
                 @RT.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
+                @LeftTrigger.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftTrigger;
+                @LeftTrigger.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftTrigger;
+                @LeftTrigger.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftTrigger;
                 @DPadUp.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDPadUp;
                 @DPadUp.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDPadUp;
                 @DPadUp.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDPadUp;
@@ -818,9 +858,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Y.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
                 @Y.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
                 @Y.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
-                @LeftTrigger.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftTrigger;
-                @LeftTrigger.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftTrigger;
-                @LeftTrigger.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftTrigger;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -837,12 +874,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @RB.started += instance.OnRB;
                 @RB.performed += instance.OnRB;
                 @RB.canceled += instance.OnRB;
+                @LeftBumper.started += instance.OnLeftBumper;
+                @LeftBumper.performed += instance.OnLeftBumper;
+                @LeftBumper.canceled += instance.OnLeftBumper;
                 @CriticalAttack.started += instance.OnCriticalAttack;
                 @CriticalAttack.performed += instance.OnCriticalAttack;
                 @CriticalAttack.canceled += instance.OnCriticalAttack;
                 @RT.started += instance.OnRT;
                 @RT.performed += instance.OnRT;
                 @RT.canceled += instance.OnRT;
+                @LeftTrigger.started += instance.OnLeftTrigger;
+                @LeftTrigger.performed += instance.OnLeftTrigger;
+                @LeftTrigger.canceled += instance.OnLeftTrigger;
                 @DPadUp.started += instance.OnDPadUp;
                 @DPadUp.performed += instance.OnDPadUp;
                 @DPadUp.canceled += instance.OnDPadUp;
@@ -864,9 +907,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Y.started += instance.OnY;
                 @Y.performed += instance.OnY;
                 @Y.canceled += instance.OnY;
-                @LeftTrigger.started += instance.OnLeftTrigger;
-                @LeftTrigger.performed += instance.OnLeftTrigger;
-                @LeftTrigger.canceled += instance.OnLeftTrigger;
             }
         }
     }
@@ -884,8 +924,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLockOn(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnRB(InputAction.CallbackContext context);
+        void OnLeftBumper(InputAction.CallbackContext context);
         void OnCriticalAttack(InputAction.CallbackContext context);
         void OnRT(InputAction.CallbackContext context);
+        void OnLeftTrigger(InputAction.CallbackContext context);
         void OnDPadUp(InputAction.CallbackContext context);
         void OnDPadDown(InputAction.CallbackContext context);
         void OnDPadLeft(InputAction.CallbackContext context);
@@ -893,6 +935,5 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSelectButton(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnY(InputAction.CallbackContext context);
-        void OnLeftTrigger(InputAction.CallbackContext context);
     }
 }

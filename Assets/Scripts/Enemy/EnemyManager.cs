@@ -23,10 +23,13 @@ public class EnemyManager : CharacterManager
     public bool isInteracting;
     public float rotationSpeed = 30;
     public float maximumAttackRange = 1.5f;
+
+    [Header("Combat Flags")] 
+    public bool canDoCombo;
     
     [Header("A.I. Settings")]
     //circle radius of detection by enemy
-    public float detectionRadius = 20;
+    public float detectionRadius = 2;
     // the higher the max detection angle, expands the field of view
     public float minimumDetectionAngle = -50;
     public float maximumDetectionAngle = 50;
@@ -40,7 +43,7 @@ public class EnemyManager : CharacterManager
         enemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
         enemyStats = GetComponent<EnemyStats>();
         enemyRigidbody = GetComponent<Rigidbody>();
-        //backstabCollider = GetComponentInChildren<CriticalDamageCollider>();
+   
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         navMeshAgent.enabled = false;
     }
@@ -53,15 +56,20 @@ public class EnemyManager : CharacterManager
     private void Update()
     {
         HandleRecoveryTimer();
+        HandleStateMachine();
+        
         isInteracting = enemyAnimationManager.anim.GetBool("isInteracting");
+        // when animation event changes to true, change this bool to true
+        canDoCombo = enemyAnimationManager.anim.GetBool("canDoCombo");
         // update animator is dead bool (in associated character managers)
         enemyAnimationManager.anim.SetBool("isDead", enemyStats.isDead);
     }
 
     // rigid body moves better on fixed update than update
-    private void FixedUpdate()
+    private void LateUpdate()
     {
-        HandleStateMachine();
+        navMeshAgent.transform.localPosition = Vector3.zero;
+        navMeshAgent.transform.localRotation = Quaternion.identity;
     }
 
     private void HandleStateMachine()

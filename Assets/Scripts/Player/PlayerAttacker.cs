@@ -119,7 +119,12 @@ public class PlayerAttacker : MonoBehaviour
     #region Input Actions
     
     public void HandleRBAction()
-    {
+    {/*
+        if (playerManager.canDoCombo)
+        {
+            inputHandler.comboFlag = true;
+            HandleWeaponCombo(playerInventory.rightWeapon);
+        }*/
         // handle melee weapon attack
         if (playerInventory.rightWeapon.isMeleeWeapon)
         {
@@ -156,6 +161,7 @@ public class PlayerAttacker : MonoBehaviour
         if (playerManager.canDoCombo)
         {
             inputHandler.comboFlag = true;
+            HandleWeaponCombo(playerInventory.rightWeapon);
             inputHandler.comboFlag = false;
         }
         else

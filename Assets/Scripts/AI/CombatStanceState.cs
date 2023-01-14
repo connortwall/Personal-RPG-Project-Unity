@@ -10,6 +10,10 @@ namespace CW
         public PursueTargetState pursueTargetState;
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager enemyAnimationManager)
     {
+        if (enemyManager.isInteracting)
+        {
+            return this;
+        }
         //check for attack range
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position,
             enemyManager.transform.position);

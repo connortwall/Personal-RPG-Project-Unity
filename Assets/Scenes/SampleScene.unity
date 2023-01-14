@@ -2321,13 +2321,13 @@ MonoBehaviour:
   backstabCollider: {fileID: 1112376641}
   riposteCollider: {fileID: 101667443}
   canBeRiposted: 1
+  canBeParried: 0
   isParrying: 0
   pendingCriticalDamage: 0
   enemyAttacks:
   - {fileID: 11400000, guid: 8ab11bb0c530d425192fe74a464fcd81, type: 2}
-  - {fileID: 11400000, guid: 7a9d9f4d78af3434ca5c754b51cd3b95, type: 2}
   currentAttack: {fileID: 0}
-  currentState: {fileID: 1040643039}
+  currentState: {fileID: 1266892417}
   currentTarget: {fileID: 0}
   navMeshAgent: {fileID: 0}
   enemyRigidbody: {fileID: 0}

@@ -16,6 +16,47 @@ public class EnemyAnimationManager : AnimatorManager
       enemyStats = GetComponentInParent<EnemyStats>();
    }
    
+   public void CanRotate()
+   {
+      anim.SetBool("canRotate", true);
+   }
+
+   public void StopRotation()
+   {
+      anim.SetBool("canRotate", false);
+   }
+
+   public void EnableCombo()
+   {
+      anim.SetBool("canDoCombo", true);
+   }
+        
+   public void DisableCombo()
+   {
+      anim.SetBool("canDoCombo", false);
+   }
+   // enable invulnerability for the character
+   public void EnableIsInvulnerable()
+   {
+      anim.SetBool("isInvulnerable", true);
+   }
+        
+   // disable invulnerability for the character
+   public void DisableIsInvulnerable()
+   {
+      anim.SetBool("isInvulnerable", false);
+   }
+
+   // can use these as animation events bc they exist on thw same level as animation events
+   public void EnableIsParrying()
+   {
+         enemyManager.isParrying = true;
+   }
+           
+   public void DisableIsParrying()
+   {
+         enemyManager.isParrying = false;
+   }
    public override void TakeCriticalDamageAnimationEvent()
    {
       // using no animation bc the critical attack resulting in death has special sequence of instant death
@@ -26,15 +67,6 @@ public class EnemyAnimationManager : AnimatorManager
       enemyManager.pendingCriticalDamage = 0;
    }
    
-   public void EnableIsParrying()
-   {
-      enemyManager.isParrying = true;
-   }
-        
-   public void DisableIsParrying()
-   {
-      enemyManager.isParrying = false;
-   }
 
    public void EnableCanBeRiposted()
    {
