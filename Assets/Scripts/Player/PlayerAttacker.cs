@@ -119,12 +119,7 @@ public class PlayerAttacker : MonoBehaviour
     #region Input Actions
     
     public void HandleRBAction()
-    {/*
-        if (playerManager.canDoCombo)
-        {
-            inputHandler.comboFlag = true;
-            HandleWeaponCombo(playerInventory.rightWeapon);
-        }*/
+    {
         // handle melee weapon attack
         if (playerInventory.rightWeapon.isMeleeWeapon)
         {
@@ -138,6 +133,12 @@ public class PlayerAttacker : MonoBehaviour
             PerformRBMagicAction(playerInventory.rightWeapon);
         }
         
+    }
+    
+
+    public void HandleLBAction()
+    {
+        PerformLBBlockingAction();
     }
 
     public void HandleLTAction()
@@ -232,6 +233,24 @@ public class PlayerAttacker : MonoBehaviour
         playerInventory.currentSpell.SuccessfullyCastSpell(playerAnimatorManager, playerStats);
     }
     
+    #endregion
+    
+    #region Defense Actions
+    private void PerformLBBlockingAction()
+    {
+        if (playerManager.isInteracting)
+        {
+            return;
+        }
+
+        // cant start block if already blocking
+        if (playerManager.isBlocking)
+        {
+            return;
+        }
+        playerAnimatorManager.PlayTargetAnimation("block", false, true);
+        playerManager.isBlocking = true;
+    }
     #endregion
 
     public void AttemptBackstabOrRiposte()

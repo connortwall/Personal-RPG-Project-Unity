@@ -15,8 +15,9 @@ namespace CW
         public bool aInput;
         public bool b_input;
         public bool y_Input;
-        public bool rb_Input;
-        public bool rt_Input;
+        public bool rightbumper_Input;
+        public bool righttrigger_Input;
+        public bool leftbumper_Input;
         public bool lefttrigger_Input;
         public bool critical_Attack_Input;
         public bool jump_Input;
@@ -81,8 +82,10 @@ namespace CW
                 inputActions.PlayerActions.SelectButton.performed += inputActions => aInput = true;
                 
                 // handle attack input
-                inputActions.PlayerActions.RB.performed += i => rb_Input = true;
-                inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+                inputActions.PlayerActions.RB.performed += i => rightbumper_Input = true;
+                inputActions.PlayerActions.RT.performed += i => righttrigger_Input = true;
+                inputActions.PlayerActions.LeftBumper.performed += i => leftbumper_Input = true;
+                inputActions.PlayerActions.LeftBumper.canceled += i => leftbumper_Input = false;
                 inputActions.PlayerActions.LeftTrigger.performed += inputActions => lefttrigger_Input = true;
                 
                 // handle quick slot
@@ -132,7 +135,7 @@ namespace CW
         {
             HandleMoveInput(delta);
             HandleRollInput(delta);
-            HandleAttackInput(delta);
+            HandleCombatInput(delta);
             HandleQuickSlotInput();
             HandleInventoryInput();
             HandleLockOnInput();
@@ -184,16 +187,17 @@ namespace CW
             }
         }
 
-        private void HandleAttackInput(float delta)
+        private void HandleCombatInput(float delta)
         {
-            if (rb_Input == true)
+            if (rightbumper_Input == true)
             {
                 playerAttacker.HandleRBAction();
             }
-            if (rt_Input == true)
+            if (righttrigger_Input == true)
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
             }
+            
 
             if (lefttrigger_Input)
             {
@@ -207,8 +211,15 @@ namespace CW
                 {
                     playerAttacker.HandleLTAction();
                 }
-                
-                
+            }
+            if (leftbumper_Input)
+            {
+                // do a block
+                playerAttacker.HandleLBAction();
+            }
+            else
+            {
+                playerManager.isBlocking = false;
             }
         }
 

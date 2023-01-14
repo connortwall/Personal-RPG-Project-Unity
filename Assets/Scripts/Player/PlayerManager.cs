@@ -25,6 +25,7 @@ namespace CW
         public bool isUsingRightHand;
         public bool isUsingLeftHand;
         public bool isInvulnerable;
+        public bool isBlocking;
 
         
 
@@ -47,19 +48,19 @@ namespace CW
         {
             float delta = Time.deltaTime;
 
-            // off at the same time as bool
+            // set bools from animation state
             isInteracting = anim.GetBool("isInteracting");
             canDoCombo = anim.GetBool("canDoCombo");
-            isInAir = anim.GetBool("isInAir");
-            // update animator is dead bool (in associated character managers)
-            anim.SetBool("isDead", playerStats.isDead);
-            // update player animation with can rotate bool
-            playerAnimatorManager.canRotate = anim.GetBool("canRotate");
-            
-            // set bools from animation state
             isUsingRightHand = anim.GetBool("isUsingRightHand");
             isUsingLeftHand = anim.GetBool("isUsingLeftHand");
             isInvulnerable = anim.GetBool("isInvulnerable");
+            
+            // manager = animator
+            anim.SetBool("isBlocking", isBlocking);
+            isInAir = anim.GetBool("isInAir");
+            // update animator is dead bool (in associated character managers)
+            anim.SetBool("isDead", playerStats.isDead);
+            playerAnimatorManager.canRotate = anim.GetBool("canRotate");
             
             // reset flags
             inputHandler.rollFlag = false;
@@ -98,8 +99,8 @@ namespace CW
         {
             // can olnly  be called once per frame
             inputHandler.rollFlag = false;
-            inputHandler.rb_Input = false;
-            inputHandler.rt_Input = false;
+            inputHandler.rightbumper_Input = false;
+            inputHandler.righttrigger_Input = false;
             inputHandler.lefttrigger_Input = false;
             inputHandler.d_Pad_Up = false;
             inputHandler.d_Pad_Down = false;

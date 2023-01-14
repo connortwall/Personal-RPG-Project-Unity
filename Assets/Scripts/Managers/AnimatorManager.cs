@@ -9,11 +9,11 @@ namespace CW
     {
         public Animator anim;
         public bool canRotate;
-    public void PlayTargetAnimation(string targetAnim, bool isInteracting)
+    public void PlayTargetAnimation(string targetAnim, bool isInteracting, bool canRotate = false)
     {
         // only have animation applied if is interacting is true
         anim.applyRootMotion = isInteracting;
-        anim.SetBool("canRotate", false);
+        anim.SetBool("canRotate", canRotate);
         anim.SetBool("isInteracting", isInteracting);
         anim.CrossFade(targetAnim, 0.2f);
     }
