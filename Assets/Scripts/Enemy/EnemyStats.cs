@@ -31,7 +31,7 @@ namespace CW
         return maxHealth;
     }
 
-    public void TakeDamage(int damage, bool playAnimation)
+    public void TakeDamage(int damage, bool playAnimation, string damageAnimation = "Injured Stumble Idle")
     {
         // don't take damage if dead
         if (isDead)
@@ -41,6 +41,8 @@ namespace CW
 
         // reduce enemy health by damage
         currentHealth = currentHealth - damage;
+        
+        enemyAnimationManager.PlayTargetAnimation(damageAnimation, true);
         
         if (currentHealth <= 0)
         {

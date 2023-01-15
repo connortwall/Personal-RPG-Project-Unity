@@ -39,7 +39,9 @@ namespace CW
         {
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
             CharacterManager enemyCharacterManager = other.GetComponent<CharacterManager>();
-
+            BlockingCollider shield = other.transform.GetComponentInChildren<BlockingCollider>();
+            
+            // parrting happens first
             if (enemyCharacterManager != null)
             {
                 if (enemyCharacterManager.isParrying)
@@ -48,7 +50,19 @@ namespace CW
                     characterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("parried",true);
                     return;
                 }
+
+                else if(shield != null && enemyCharacterManager.isBlocking)
+                {
+                    //sheild will block perentage od total damage depending on how much the sheild abrobs
+                    float physicalDamageAfterBlock = currentWeaponDamage - (currentWeaponDamage * shield.blockingPhysicalDamageAbsorption) / 100;
+                    if (playerStats != null)
+                    {
+                        playerStats.TakeDamage(Mathf.RoundToInt(physicalDamageAfterBlock), true, "block attack");
+                        return;
+                    }
+                }
             }
+
             if (playerStats != null)
             {
                 playerStats.TakeDamage(currentWeaponDamage, true);
@@ -59,6 +73,7 @@ namespace CW
         {
             EnemyStats enemyStats = other.GetComponent<EnemyStats>();
             CharacterManager enemyCharacterManager = other.GetComponent<CharacterManager>();
+            BlockingCollider shield = other.transform.GetComponentInChildren<BlockingCollider>();
 
             if (enemyCharacterManager != null)
             {
@@ -67,6 +82,17 @@ namespace CW
                     //check if player is parryable
                     characterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("parried",true);
                     return;
+                }
+                
+                else if(shield != null && enemyCharacterManager.isBlocking)
+                {
+                    //sheild will block perentage od total damage depending on how much the sheild abrobs
+                    float physicalDamageAfterBlock = currentWeaponDamage - (currentWeaponDamage * shield.blockingPhysicalDamageAbsorption) / 100;
+                    if (enemyStats != null)
+                    {
+                        enemyStats.TakeDamage(Mathf.RoundToInt(physicalDamageAfterBlock), true, "block attack");
+                        return;
+                    }
                 }
             }
             

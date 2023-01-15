@@ -13,6 +13,9 @@ namespace CW
         public int baseDamage = 25;
         public int criticalDamageMultiplier = 4;
 
+        [Header("Absorption")] 
+        public float physicalDamageAbsorption;
+
         [Header("One Handed Attack Animations")]
         public string OH_Light_Attack_1;
         public string OH_Light_Attack_2;

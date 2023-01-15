@@ -50,6 +50,7 @@ namespace CW
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
         private PlayerStats playerStats;
+        private BlockingCollider blockingCollider;
         private WeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
         private AnimatorManager animatorManager;
@@ -65,6 +66,7 @@ namespace CW
             playerStats = GetComponent<PlayerStats>();
             // calling this bc we must reload weapons on addition of new wepon
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+            blockingCollider = GetComponentInChildren<BlockingCollider>();
             cameraHandler = FindObjectOfType<CameraHandler>();
             animatorManager = GetComponentInChildren<AnimatorManager>();
             uIManager = FindObjectOfType<UIManager>();
@@ -220,6 +222,10 @@ namespace CW
             else
             {
                 playerManager.isBlocking = false;
+                if (blockingCollider.blockingBoxCollider.enabled)
+                {
+                    blockingCollider.DisableBlockingCollider();
+                }
             }
         }
 

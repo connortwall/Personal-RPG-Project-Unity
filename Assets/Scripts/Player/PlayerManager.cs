@@ -25,7 +25,7 @@ namespace CW
         public bool isUsingRightHand;
         public bool isUsingLeftHand;
         public bool isInvulnerable;
-        public bool isBlocking;
+        
 
         
 

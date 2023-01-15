@@ -10,6 +10,7 @@ namespace CW
 public class PlayerAttacker : MonoBehaviour
 {
     private PlayerAnimatorManager playerAnimatorManager;
+    private PlayerEquipmentManager playerEquipmentManager;
     private PlayerManager playerManager;
     private PlayerStats playerStats;
     public PlayerInventory playerInventory;
@@ -25,6 +26,7 @@ public class PlayerAttacker : MonoBehaviour
     public void Awake()
     {
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+        playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerManager = GetComponentInParent<PlayerManager>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerInventory = GetComponentInParent<PlayerInventory>();
@@ -249,6 +251,7 @@ public class PlayerAttacker : MonoBehaviour
             return;
         }
         playerAnimatorManager.PlayTargetAnimation("block", false, true);
+        playerEquipmentManager.EnableBlockingCollider();
         playerManager.isBlocking = true;
     }
     #endregion

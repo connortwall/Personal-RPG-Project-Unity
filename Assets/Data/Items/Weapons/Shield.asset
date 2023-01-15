@@ -18,6 +18,7 @@ MonoBehaviour:
   isUnarmed: 0
   baseDamage: 25
   criticalDamageMultiplier: 4
+  physicalDamageAbsorption: 90
   OH_Light_Attack_1: 
   OH_Light_Attack_2: 
   OH_Heavy_Attack_1: 
