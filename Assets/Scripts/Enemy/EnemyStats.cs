@@ -10,6 +10,7 @@ namespace CW
 {  
     private EnemyAnimationManager enemyAnimationManager;
 
+    public UIEnemyHealthBar enemyHealthBar;
     // base exp award ed
     public int expAwardedOnDeath = 50;
     
@@ -23,6 +24,7 @@ namespace CW
     {
         maxHealth = SetMaxHealthFromHealthLevel();
         currentHealth = maxHealth;
+        enemyHealthBar.SetMaxHealth(maxHealth);
     }
 
     private int SetMaxHealthFromHealthLevel()
@@ -41,6 +43,7 @@ namespace CW
 
         // reduce enemy health by damage
         currentHealth = currentHealth - damage;
+        enemyHealthBar.SetHealth(currentHealth);
         
         enemyAnimationManager.PlayTargetAnimation(damageAnimation, true);
         
