@@ -33,9 +33,11 @@ public class EnemyManager : CharacterManager
     // the higher the max detection angle, expands the field of view
     public float minimumDetectionAngle = -50;
     public float maximumDetectionAngle = 50;
-
     // time before another attack
     public float currentRecoveryTime = 0;
+    [Header("A.I. Combat Settings")] 
+    public bool allowAIToPerformCombos;
+    public float comboLikelihood;
     
     private void Awake()
     {

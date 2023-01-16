@@ -11,7 +11,7 @@ public class AttackState : State
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
 
-    private bool isComboing = false;
+    private bool willDoComboOnNextAttack = false;
     public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager enemyAnimationManager)
     {
         if (enemyManager.isInteracting && enemyManager.canDoCombo == false)
@@ -20,8 +20,8 @@ public class AttackState : State
         }
         else if (enemyManager.isInteracting && enemyManager.canDoCombo)
         {
+            willDoComboOnNextAttack = false;
             enemyAnimationManager.PlayTargetAnimation(currentAttack.actionAnimation,true);
-            isComboing = false;
         }
 
         Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
@@ -59,8 +59,10 @@ public class AttackState : State
                         enemyAnimationManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
                         enemyManager.isPerformingAction = true;
 
+                        RollForComboChance(enemyManager);
+
                         // can combo
-                        if (currentAttack.canCombo)
+                        if (currentAttack.canCombo && willDoComboOnNextAttack)
                         {
                             currentAttack = currentAttack.comboAction;
                             return this;
@@ -179,6 +181,17 @@ public class AttackState : State
         }
         // want a hybrid system that uses navmesh and is brainless to be able to follow you easily on ground and off a cliff
         
+    }
+
+    private void RollForComboChance(EnemyManager enemyManager)
+    {
+        // create a random generator
+        float comboChance = Random.Range(0, 100);
+        
+        if (enemyManager.allowAIToPerformCombos && comboChance <= enemyManager.comboLikelihood)
+        {
+            willDoComboOnNextAttack = true;
+        }
     }
 }
 }
