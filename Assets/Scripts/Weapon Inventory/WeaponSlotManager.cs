@@ -10,8 +10,9 @@ namespace CW
         private PlayerManager playerManager;
         private PlayerInventory playerInventory;
         
-        private WeaponHolderSlot leftHandSlot;
-        private WeaponHolderSlot rightHandSlot;
+        // public to allow access by spell itself and add warm up FX
+        public WeaponHolderSlot leftHandSlot;
+        public WeaponHolderSlot rightHandSlot;
         private WeaponHolderSlot backSlot;
 
         public DamageCollider leftHandDamageCollider;

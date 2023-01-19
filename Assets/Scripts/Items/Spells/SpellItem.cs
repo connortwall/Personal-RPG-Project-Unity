@@ -22,12 +22,17 @@ public class SpellItem : Item
     [Header("Spell Description")] [TextArea]
     public string spellDescription;
 
-    public virtual void AttemptToCastSpell(PlayerAnimatorManager playerAnimatorManager, PlayerStats playerStats)
+    public virtual void AttemptToCastSpell(
+        PlayerAnimatorManager playerAnimatorManager, 
+        PlayerStats playerStats, 
+        WeaponSlotManager weaponSlotManager)
     {
         Debug.Log("You attempted to cast a spell");
     }
 
-    public virtual void SuccessfullyCastSpell(PlayerAnimatorManager playerAnimatorManager, PlayerStats playerStats)
+    public virtual void SuccessfullyCastSpell(
+        PlayerAnimatorManager playerAnimatorManager, 
+        PlayerStats playerStats)
     {
         Debug.Log("You successfully cast a spell");
         // only deduct magic cost is successfully cast spell

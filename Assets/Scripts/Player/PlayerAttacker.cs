@@ -198,7 +198,23 @@ public class PlayerAttacker : MonoBehaviour
                 // check for focus point
                 if (playerStats.currentMagic >= playerInventory.currentSpell.magicCost){
                     // attempt to cast spell
-                    playerInventory.currentSpell.AttemptToCastSpell(playerAnimatorManager, playerStats);
+                    playerInventory.currentSpell.AttemptToCastSpell(playerAnimatorManager, playerStats, weaponSlotManager);
+                }
+                // play an alternate out of magic animation
+                else
+                {
+                    playerAnimatorManager.PlayTargetAnimation("Shrugging",true);
+                }
+            }
+        }
+        else if (weapon.isPyroCaster)
+        {
+            if (playerInventory.currentSpell != null && playerInventory.currentSpell.isPyroSpell)
+            {
+                // check for focus point
+                if (playerStats.currentMagic >= playerInventory.currentSpell.magicCost){
+                    // attempt to cast spell
+                    playerInventory.currentSpell.AttemptToCastSpell(playerAnimatorManager, playerStats, weaponSlotManager);
                 }
                 // play an alternate out of magic animation
                 else
