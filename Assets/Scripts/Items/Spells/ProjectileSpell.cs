@@ -30,8 +30,6 @@ public class ProjectileSpell : SpellItem
         instantiatedWarmUpSpellFX.gameObject.transform.localScale = new Vector3(100, 100, 100);
         // play animation to cast spell
         playerAnimatorManager.PlayTargetAnimation(spellAnimation, true);
-        
-
     }
 
     public override void SuccessfullyCastSpell(
@@ -45,6 +43,18 @@ public class ProjectileSpell : SpellItem
         rigidbody = instatiatedSpellFX.GetComponent<Rigidbody>();
         // spell daamage collider, damage calculations
         // spellDamagecollider = instatiatedSpellFX.GetComponent<SpellDamageCollider>();
+
+        // if targeting an enemy
+        if (cameraHandler.currentLockOnTarget != null)
+        {
+            instatiatedSpellFX.transform.LookAt(cameraHandler.currentLockOnTarget.transform);
+        }
+        else
+        {
+            // judge height of projectile by camera, and direction by characters facing direction
+            instatiatedSpellFX.transform.rotation = Quaternion.Euler(cameraHandler.cameraPivotTransform.eulerAngles.x, playerStats.transform.eulerAngles.y, 0);
+        }
+        
         // add velocity going forward
         rigidbody.AddForce(instatiatedSpellFX.transform.forward * projectileForwardVelocity);
         rigidbody.AddForce(instatiatedSpellFX.transform.up * projectileUpwardVelocity);

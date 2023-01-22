@@ -25,6 +25,12 @@ namespace CW
         public int expCount = 0;
         
         public bool isDead;
-     
+
+        // review virtual void
+        public virtual void TakeDamage(int damage, bool playAnimation, string damageAnimation = "Injured Stumble Idle")
+        {
+            
+        }
+
     }
 }

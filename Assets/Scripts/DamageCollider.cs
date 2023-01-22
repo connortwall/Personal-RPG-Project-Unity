@@ -10,13 +10,14 @@ namespace CW
     {
         public CharacterManager characterManager;
     private Collider damageCollider;
+    public bool enabledDamageColliderOnStartUp = false;
     public int currentWeaponDamage = 25;
     private void Awake()
     {
         damageCollider = GetComponent<Collider>();
         damageCollider.gameObject.SetActive(true);
         damageCollider.isTrigger = true;
-        damageCollider.enabled = false;
+        damageCollider.enabled = enabledDamageColliderOnStartUp;
 
         // cant be done herre, needs to be initialized in weapnslo mamnger with colliders
         //characterManager = GetComponentInParent<CharacterManager>();

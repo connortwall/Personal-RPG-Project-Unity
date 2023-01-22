@@ -18,9 +18,17 @@ public class SpellDamageCollider : DamageCollider
    public GameObject muzzleParticles;
 
    private bool hasCollided = false;
+   private Rigidbody rigidbody;
+   private CharacterStats spellTarget;
    
    // used to rotate impact particles
    private Vector3 impactNormal;
+   
+   // if rigidbody not triggering, sometimes must call on awake
+   private void Awake()
+   {
+      rigidbody = GetComponent<Rigidbody>();
+   }
 
    private void Start()
    {
@@ -33,14 +41,24 @@ public class SpellDamageCollider : DamageCollider
       }
    }
 
-   private void OnCollisionEnter(Collision collision)
+   private void OnTriggerEnter(Collider other)
    {
       if (!hasCollided)
       {
+         spellTarget = other.transform.GetComponent<CharacterStats>();
+
+         if (spellTarget != null)
+         {
+            spellTarget.TakeDamage(currentWeaponDamage, false);
+         }
          hasCollided = true;
          // instantiate impact of explosion impact
          impactParticles = Instantiate(impactParticles, transform.position,
             Quaternion.FromToRotation(Vector3.up, impactNormal));
+         
+         Destroy(projectileParticles);
+         Destroy(impactParticles, 4f);
+         Destroy(gameObject, 4f);
       }
    }
 }

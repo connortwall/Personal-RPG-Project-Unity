@@ -64,7 +64,7 @@ namespace CW
         return maxMagic;
     }
     
-    public void TakeDamage(int damage, bool playAnimation, string damageAnimation = "Injured Stumble Idle")
+    public override void TakeDamage(int damage, bool playAnimation, string damageAnimation = "Injured Stumble Idle")
     {
         if (playerManager.isInvulnerable)
         {
