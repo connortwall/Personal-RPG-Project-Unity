@@ -22,10 +22,14 @@ public class HealingSpell : SpellItem
       Debug.Log("Attempting to cast spell");
    }
 
-   public override void SuccessfullyCastSpell(PlayerAnimatorManager playerAnimatorManager, PlayerStats playerStats)
+   public override void SuccessfullyCastSpell(
+      PlayerAnimatorManager playerAnimatorManager, 
+      PlayerStats playerStats,
+      CameraHandler cameraHandler,
+      WeaponSlotManager weaponSlotManager)
    {
       // also fires function in original spell item class
-      base.SuccessfullyCastSpell(playerAnimatorManager,playerStats);
+      base.SuccessfullyCastSpell(playerAnimatorManager,playerStats, cameraHandler, weaponSlotManager);
       GameObject instantiatedSpellFX = Instantiate(spellCastFX, playerAnimatorManager.transform);
       playerStats.HealPlayer(healAmount);
       Debug.Log("Spell cast successful");

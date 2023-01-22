@@ -9,6 +9,7 @@ namespace CW
 // class needs to be on same level as animator to be able to activate animation events for the character and fire animation events
 public class PlayerAttacker : MonoBehaviour
 {
+    private CameraHandler cameraHandler;
     private PlayerAnimatorManager playerAnimatorManager;
     private PlayerEquipmentManager playerEquipmentManager;
     private PlayerManager playerManager;
@@ -25,6 +26,7 @@ public class PlayerAttacker : MonoBehaviour
 
     public void Awake()
     {
+        cameraHandler = FindObjectOfType<CameraHandler>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerManager = GetComponentInParent<PlayerManager>();
@@ -32,6 +34,7 @@ public class PlayerAttacker : MonoBehaviour
         playerInventory = GetComponentInParent<PlayerInventory>();
         inputHandler = GetComponentInParent<InputHandler>();
         weaponSlotManager = GetComponent<WeaponSlotManager>();
+        
     }
 
     public void Update()
@@ -248,7 +251,7 @@ public class PlayerAttacker : MonoBehaviour
     // animation to be called as an animation event, same level as model, now can chose wichi frame of aniatio  to cast spell
     private void SuccessfullyCastSpell()
     {
-        playerInventory.currentSpell.SuccessfullyCastSpell(playerAnimatorManager, playerStats);
+        playerInventory.currentSpell.SuccessfullyCastSpell(playerAnimatorManager, playerStats, cameraHandler, weaponSlotManager);
         playerAnimatorManager.anim.SetBool("isFiringSpell", true);
         
     }

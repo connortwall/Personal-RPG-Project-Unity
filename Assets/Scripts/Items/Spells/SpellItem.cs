@@ -32,7 +32,9 @@ public class SpellItem : Item
 
     public virtual void SuccessfullyCastSpell(
         PlayerAnimatorManager playerAnimatorManager, 
-        PlayerStats playerStats)
+        PlayerStats playerStats,
+        CameraHandler cameraHandler,
+        WeaponSlotManager weaponSlotManager)
     {
         Debug.Log("You successfully cast a spell");
         // only deduct magic cost is successfully cast spell

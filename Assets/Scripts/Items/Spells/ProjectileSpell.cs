@@ -8,8 +8,14 @@ namespace CW
     [CreateAssetMenu(menuName = "Spells/Projectile Spell")]
 public class ProjectileSpell : SpellItem
 {
+    [Header("Projectile Damage")]
     public float baseDamage;
-    public float projectileVelocity;
+
+    [Header("Projectile Physics")]
+    public float projectileForwardVelocity;
+    public float projectileUpwardVelocity;
+    public float projectileMass;
+    public bool isAffectedByGravity;
     private Rigidbody rigidbody;
 
 
@@ -30,9 +36,22 @@ public class ProjectileSpell : SpellItem
 
     public override void SuccessfullyCastSpell(
         PlayerAnimatorManager playerAnimatorManager,
-        PlayerStats playerStats)
+        PlayerStats playerStats,
+        CameraHandler cameraHandler,
+        WeaponSlotManager weaponSlotManager)
     {
-        base.SuccessfullyCastSpell(playerAnimatorManager, playerStats);
+        base.SuccessfullyCastSpell(playerAnimatorManager, playerStats, cameraHandler, weaponSlotManager);
+        GameObject instatiatedSpellFX = Instantiate(spellCastFX, weaponSlotManager.rightHandSlot.transform.position, cameraHandler.cameraPivotTransform.rotation);
+        rigidbody = instatiatedSpellFX.GetComponent<Rigidbody>();
+        // spell daamage collider, damage calculations
+        // spellDamagecollider = instatiatedSpellFX.GetComponent<SpellDamageCollider>();
+        // add velocity going forward
+        rigidbody.AddForce(instatiatedSpellFX.transform.forward * projectileForwardVelocity);
+        rigidbody.AddForce(instatiatedSpellFX.transform.up * projectileUpwardVelocity);
+        rigidbody.useGravity = isAffectedByGravity;
+        rigidbody.mass = projectileMass;
+        // unparent he game object
+        instatiatedSpellFX.transform.parent = null;
     }
 }
 }
