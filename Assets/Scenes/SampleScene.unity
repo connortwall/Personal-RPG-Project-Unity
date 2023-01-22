@@ -2991,6 +2991,7 @@ MonoBehaviour:
   canBeParried: 0
   isParrying: 0
   isBlocking: 0
+  isFiringSpell: 0
   pendingCriticalDamage: 0
   enemyAttacks:
   - {fileID: 11400000, guid: 8ab11bb0c530d425192fe74a464fcd81, type: 2}
@@ -3559,6 +3560,7 @@ MonoBehaviour:
   canBeParried: 0
   isParrying: 0
   isBlocking: 0
+  isFiringSpell: 0
   pendingCriticalDamage: 0
   interactableUIGameObject: {fileID: 934184113}
   itemInteractableGameObject: {fileID: 390028032}
@@ -3582,13 +3584,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1215ef1c4a8a64231be8eb60f80efbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpell: {fileID: 11400000, guid: ac6a885fde26c4b2aac0329d5dfb7a22, type: 2}
+  currentSpell: {fileID: 11400000, guid: 1fd087f325e334d708f94d66da9502fe, type: 2}
   rightWeapon: {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
   leftWeapon: {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
   unarmedWeapon: {fileID: 11400000, guid: 09f4476ab282b4542a8b0b4185f6588b, type: 2}
   weaponsInRightHandSlots:
+  - {fileID: 11400000, guid: feb2b3ef5a72241f4a9b1625bea38cca, type: 2}
   - {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
-  - {fileID: 11400000, guid: 706b0f385b4944f2a88d8c76916ca288, type: 2}
+  - {fileID: 11400000, guid: 5da9e4ebb35ae434fb76b228a9c4bd8c, type: 2}
   weaponsInLeftHandSlots:
   - {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
   - {fileID: 11400000, guid: 551ccd012831d471a8ff014d00b512ec, type: 2}

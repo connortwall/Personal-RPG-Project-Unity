@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
-  itemName: 
-  spellWarmUpFX: {fileID: 7462310940245051066, guid: dabae5ca938364c6eb45d0cb2dd3904c, type: 3}
-  spellCastFX: {fileID: 3603350636535610642, guid: 115eca5ebfe1445c3a8acb8ff86d0998, type: 3}
-  spellAnimation: 
-  magicCost: 0
+  itemName: Fireball
+  spellWarmUpFX: {fileID: 3836290780418539898, guid: 13fd11ca294024d348dd96d8f25371f1, type: 3}
+  spellCastFX: {fileID: 4108703800420256059, guid: 5d3592bd74dc942febc885663fb481d1, type: 3}
+  spellAnimation: Spell Throw Start
+  magicCost: 10
   isFaithSpell: 0
   isMagicSpell: 0
-  isPyroSpell: 0
+  isPyroSpell: 1
   spellDescription: 
   baseDamage: 0
   projectileVelocity: 0

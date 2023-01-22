@@ -22,8 +22,9 @@ public class ProjectileSpell : SpellItem
         base.AttemptToCastSpell(playerAnimatorManager,playerStats,weaponSlotManager);
         GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFX, weaponSlotManager.rightHandSlot.transform);
         instantiatedWarmUpSpellFX.gameObject.transform.localScale = new Vector3(100, 100, 100);
-        playerAnimatorManager.PlayTargetAnimation(spellAnimation, true);
         // play animation to cast spell
+        playerAnimatorManager.PlayTargetAnimation(spellAnimation, true);
+        
 
     }
 

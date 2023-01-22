@@ -2,14 +2,22 @@ using UnityEngine;
 
 public class ResetAnimatorBool : StateMachineBehaviour
 {
-    public string targetBool;
-    public bool status;
-    
+    public string isInteractingBool = "isInteracting";
+    public bool isInteractingStatus = false;
+
+    public string isFiringSpellBool = "isFiringSpell";
+    public bool isFiringSpellStatus = false;
+
+    public string canRotateBool = "canRotate";
+    // when entering empty status, activate rotating
+    public bool canRotateStatus = true;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool(targetBool, status);
+        animator.SetBool(isInteractingBool, isInteractingStatus);
+        animator.SetBool(isFiringSpellBool, isFiringSpellStatus);
+        animator.SetBool(canRotateBool, canRotateStatus);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

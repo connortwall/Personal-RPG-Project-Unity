@@ -54,6 +54,7 @@ namespace CW
             isUsingRightHand = anim.GetBool("isUsingRightHand");
             isUsingLeftHand = anim.GetBool("isUsingLeftHand");
             isInvulnerable = anim.GetBool("isInvulnerable");
+            isFiringSpell = anim.GetBool("isFiringSpell");
             
             // manager = animator
             anim.SetBool("isBlocking", isBlocking);

@@ -249,6 +249,8 @@ public class PlayerAttacker : MonoBehaviour
     private void SuccessfullyCastSpell()
     {
         playerInventory.currentSpell.SuccessfullyCastSpell(playerAnimatorManager, playerStats);
+        playerAnimatorManager.anim.SetBool("isFiringSpell", true);
+        
     }
     
     #endregion
