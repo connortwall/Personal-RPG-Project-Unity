@@ -24,6 +24,6 @@ MonoBehaviour:
   spellDescription: 
   baseDamage: 40
   projectileForwardVelocity: 300
-  projectileUpwardVelocity: 50
+  projectileUpwardVelocity: 200
   projectileMass: 25
   isAffectedByGravity: 1
