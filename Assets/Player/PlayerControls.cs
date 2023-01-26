@@ -326,6 +326,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""X"",
+                    ""type"": ""Button"",
+                    ""id"": ""e5526f51-ec5d-4b3e-b56e-0b347adf2725"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -625,6 +634,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Left Trigger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d966a49e-7471-4db7-93e2-9dc156c8704a"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4613803-20dd-47a3-93b3-d7e696b343fb"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -654,6 +685,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_SelectButton = m_PlayerActions.FindAction("Select Button", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_Y = m_PlayerActions.FindAction("Y", throwIfNotFound: true);
+        m_PlayerActions_X = m_PlayerActions.FindAction("X", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -785,6 +817,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_SelectButton;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_Y;
+    private readonly InputAction m_PlayerActions_X;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -804,6 +837,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @SelectButton => m_Wrapper.m_PlayerActions_SelectButton;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @Y => m_Wrapper.m_PlayerActions_Y;
+        public InputAction @X => m_Wrapper.m_PlayerActions_X;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -858,6 +892,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Y.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
                 @Y.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
                 @Y.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
+                @X.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnX;
+                @X.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnX;
+                @X.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnX;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -907,6 +944,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Y.started += instance.OnY;
                 @Y.performed += instance.OnY;
                 @Y.canceled += instance.OnY;
+                @X.started += instance.OnX;
+                @X.performed += instance.OnX;
+                @X.canceled += instance.OnX;
             }
         }
     }
@@ -935,5 +975,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSelectButton(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnY(InputAction.CallbackContext context);
+        void OnX(InputAction.CallbackContext context);
     }
 }

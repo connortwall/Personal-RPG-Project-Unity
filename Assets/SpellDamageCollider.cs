@@ -49,7 +49,7 @@ public class SpellDamageCollider : DamageCollider
 
          if (spellTarget != null)
          {
-            spellTarget.TakeDamage(currentWeaponDamage, false);
+            spellTarget.TakeDamage(currentWeaponDamage, true);
          }
          hasCollided = true;
          // instantiate impact of explosion impact

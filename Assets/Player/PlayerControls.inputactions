@@ -304,6 +304,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "X",
+                    "type": "Button",
+                    "id": "e5526f51-ec5d-4b3e-b56e-0b347adf2725",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -601,6 +610,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Left Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d966a49e-7471-4db7-93e2-9dc156c8704a",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4613803-20dd-47a3-93b3-d7e696b343fb",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

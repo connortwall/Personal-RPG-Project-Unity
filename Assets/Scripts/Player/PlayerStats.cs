@@ -64,7 +64,7 @@ namespace CW
         return maxMagic;
     }
     
-    public override void TakeDamage(int damage, bool playAnimation, string damageAnimation = "Injured Stumble Idle")
+    public override void TakeDamage(int damage, bool playDefaultDeathAnimation, string damageAnimation = "Injured Stumble Idle")
     {
         if (playerManager.isInvulnerable)
         {
@@ -78,7 +78,7 @@ namespace CW
         currentHealth = currentHealth - damage;
         healthBar.SetCurrentHealth(currentHealth);
         
-        if (playAnimation)
+        if (playDefaultDeathAnimation)
         {
             playerAnimatorManager.PlayTargetAnimation(damageAnimation, true);
         }
@@ -86,7 +86,7 @@ namespace CW
         if (currentHealth <= 0)
         {
                 currentHealth = 0;
-                if (playAnimation)
+                if (playDefaultDeathAnimation)
                 {
                     playerAnimatorManager.PlayTargetAnimation("Falling Back Death", true);
                 } 

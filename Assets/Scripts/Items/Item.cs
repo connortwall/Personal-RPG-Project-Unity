@@ -7,5 +7,6 @@ namespace CW
         [Header("Item Information")] public Sprite itemIcon;
 
         public string itemName;
+        public GameObject itemModel;
     }
 }

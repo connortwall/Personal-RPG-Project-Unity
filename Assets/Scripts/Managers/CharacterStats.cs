@@ -27,7 +27,7 @@ namespace CW
         public bool isDead;
 
         // review virtual void
-        public virtual void TakeDamage(int damage, bool playAnimation, string damageAnimation = "Injured Stumble Idle")
+        public virtual void TakeDamage(int damage, bool playDefaultDeathAnimation, string damageAnimation = "Injured Stumble Idle")
         {
             
         }

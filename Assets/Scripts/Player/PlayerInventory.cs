@@ -8,16 +8,15 @@ namespace CW
     public class PlayerInventory : MonoBehaviour
     {
         private WeaponSlotManager weaponSlotManager;
-        
+
         // spells equipped
         public SpellItem currentSpell;
-        
         // weapons equipped
         public WeaponItem rightWeapon;
         public WeaponItem leftWeapon;
-        
         // unarmed
         public WeaponItem unarmedWeapon;
+        public ConsumableItem currentConsumableItem;
 
         // create arrays of size 2
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[2];

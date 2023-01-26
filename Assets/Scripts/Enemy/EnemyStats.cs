@@ -33,7 +33,7 @@ namespace CW
         return maxHealth;
     }
 
-    public override void TakeDamage(int damage, bool playAnimation, string damageAnimation = "Injured Stumble Idle")
+    public override void TakeDamage(int damage, bool playDefaultDeathAnimation, string damageAnimation = "Injured Stumble Idle")
     {
         // don't take damage if dead
         if (isDead)
@@ -49,7 +49,7 @@ namespace CW
         
         if (currentHealth <= 0)
         {
-            HandleDeath(playAnimation);
+            HandleDeath(playDefaultDeathAnimation);
         }
 
 }

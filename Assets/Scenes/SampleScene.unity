@@ -3489,6 +3489,7 @@ MonoBehaviour:
   mouseY: 0
   aInput: 0
   b_input: 0
+  consume_Input: 0
   y_Input: 0
   rightbumper_Input: 0
   righttrigger_Input: 0
@@ -3588,6 +3589,7 @@ MonoBehaviour:
   rightWeapon: {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
   leftWeapon: {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
   unarmedWeapon: {fileID: 11400000, guid: 09f4476ab282b4542a8b0b4185f6588b, type: 2}
+  currentConsumableItem: {fileID: 0}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: feb2b3ef5a72241f4a9b1625bea38cca, type: 2}
   - {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
@@ -3809,7 +3811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5972213103851030231, guid: 8715a0a43f6614c19afec8bd0e7b7e1e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5972213103851030231, guid: 8715a0a43f6614c19afec8bd0e7b7e1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4431,6 +4433,7 @@ GameObject:
   - component: {fileID: 1620947020}
   - component: {fileID: 1620947021}
   - component: {fileID: 919132148095426572}
+  - component: {fileID: 919132148095426573}
   m_Layer: 7
   m_Name: Player Model
   m_TagString: Untagged
@@ -4450,6 +4453,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4f6c7d9e326462c878be1313612001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &919132148095426573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148095426571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9632fde33d54fdc9246655cc73bc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentParticleFX: {fileID: 0}
+  amountToBeHealed: 0
+  instantiatedFXModel: {fileID: 0}
 --- !u!1 &1072663758090475417
 GameObject:
   m_ObjectHideFlags: 0

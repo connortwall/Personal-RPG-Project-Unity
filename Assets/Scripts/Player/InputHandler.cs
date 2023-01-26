@@ -1,5 +1,4 @@
-using System;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 namespace CW
@@ -14,6 +13,7 @@ namespace CW
 
         public bool aInput;
         public bool b_input;
+        public bool consume_Input;
         public bool y_Input;
         public bool rightbumper_Input;
         public bool righttrigger_Input;
@@ -49,11 +49,12 @@ namespace CW
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
+        private PlayerFXManager playerFXManager;
         private PlayerStats playerStats;
         private BlockingCollider blockingCollider;
         private WeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
-        private AnimatorManager animatorManager;
+        private PlayerAnimatorManager playerAnimatorManager;
         private UIManager uIManager;
 
         private Vector2 movementInput;
@@ -63,12 +64,13 @@ namespace CW
             playerAttacker = GetComponentInChildren<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
+            playerFXManager = GetComponentInChildren<PlayerFXManager>();
             playerStats = GetComponent<PlayerStats>();
             // calling this bc we must reload weapons on addition of new wepon
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             blockingCollider = GetComponentInChildren<BlockingCollider>();
             cameraHandler = FindObjectOfType<CameraHandler>();
-            animatorManager = GetComponentInChildren<AnimatorManager>();
+            playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
             uIManager = FindObjectOfType<UIManager>();
         }
 
@@ -96,7 +98,7 @@ namespace CW
                 
                 // handle select
                 inputActions.PlayerActions.SelectButton.performed += i => aInput = true;
-                
+                inputActions.PlayerActions.X.performed += i => consume_Input = true;
                 // handle roll input
                 // when input is cancelled
                 inputActions.PlayerActions.Roll.performed += i => b_input = true;
@@ -143,6 +145,7 @@ namespace CW
             HandleLockOnInput();
             HandleTwoHandInput();
             HandleCriticalAttackInput();
+            HandleConsumeableInput();
         }
         
         public void HandleMoveInput(float delta)
@@ -337,6 +340,16 @@ namespace CW
                 // disable after use
                 critical_Attack_Input = false;
                 playerAttacker.AttemptBackstabOrRiposte();
+            }
+        }
+
+        private void HandleConsumeableInput()
+        {
+            if (consume_Input)
+            {
+                consume_Input = false;
+                // sue current consumable 
+                playerInventory.currentConsumableItem.AttemptToConsumeItem(playerAnimatorManager, weaponSlotManager, playerFXManager);
             }
         }
     }
