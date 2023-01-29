@@ -3589,7 +3589,7 @@ MonoBehaviour:
   rightWeapon: {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
   leftWeapon: {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}
   unarmedWeapon: {fileID: 11400000, guid: 09f4476ab282b4542a8b0b4185f6588b, type: 2}
-  currentConsumableItem: {fileID: 0}
+  currentConsumableItem: {fileID: 11400000, guid: fa58be72436444fe09e230574a9e21c0, type: 2}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: feb2b3ef5a72241f4a9b1625bea38cca, type: 2}
   - {fileID: 11400000, guid: 6a564f524b5454c05a4f7cbec7900df6, type: 2}

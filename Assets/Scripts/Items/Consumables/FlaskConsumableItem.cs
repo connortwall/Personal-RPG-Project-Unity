@@ -12,21 +12,21 @@ public class FlaskConsumableItem : ConsumableItem
     public bool ashenFlask;
 
     [Header(("Recovery Amount"))] 
-    public int healthRecoveryAmount;
+    public int healthRecoverAmount;
 
-    public int focusPointAmount;
+    public int focusPointRecoverAmount;
     
     [Header(("Recovery FX"))] 
     public GameObject recoveryFX;
 
     public override void AttemptToConsumeItem(PlayerAnimatorManager playerAnimatorManager, WeaponSlotManager weaponSlotManager, PlayerFXManager playerFXManager)
     {
-        // play both logic from deriving and specific to this
+        // play both logic from deriving consumable and specific to this, (starting with base)
         base.AttemptToConsumeItem(playerAnimatorManager, weaponSlotManager, playerFXManager);
         GameObject flask = Instantiate(itemModel, weaponSlotManager.rightHandSlot.transform);
         // add health ot fp
         playerFXManager.currentParticleFX = recoveryFX;
-        playerFXManager.amountToBeHealed = healthRecoveryAmount;
+        playerFXManager.amountToBeHealed = healthRecoverAmount;
         playerFXManager.instantiatedFXModel = flask;
         // instantion flask in hand and play animation
         // hide weapon when playing animation

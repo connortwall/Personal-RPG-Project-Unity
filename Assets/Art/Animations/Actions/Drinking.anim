@@ -92446,7 +92446,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 4.3333335
-    functionName: HealPlayer
+    functionName: HealPlayerFromEffect
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

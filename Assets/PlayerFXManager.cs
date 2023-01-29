@@ -21,13 +21,13 @@ public class PlayerFXManager : MonoBehaviour
         weaponSlotManager = GetComponent<WeaponSlotManager>();
     }
 
-    public void HealPlayer()
+    public void HealPlayerFromEffect()
     {
         playerStats.HealPlayer(amountToBeHealed);
-        // instantiate at feet of player
+        // instantiate particles at feet of player
         GameObject healFX = Instantiate(currentParticleFX, playerStats.transform);
-        // TODO: review what destroy is
-        Destroy(instantiatedFXModel.gameObject );    
+        // TODO: review what destroy does exactly
+        Destroy(instantiatedFXModel.gameObject);    
         weaponSlotManager.LoadBothWeaponsOnSlots();
     }
 }

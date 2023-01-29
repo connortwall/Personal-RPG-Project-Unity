@@ -16,12 +16,12 @@ MonoBehaviour:
   itemName: Estus Flask
   itemModel: {fileID: 7304689721087797405, guid: bd8148a13958040d1af70acf754f4654, type: 3}
   maxItemAmount: 10
-  currentItemAmount: 4
+  currentItemAmount: 10
   item: {fileID: 1100542972656264, guid: 107624c950fd44d7cb0469a01451b751, type: 3}
   consumeAnimation: Drinking
   isInteracting: 0
   estusFlask: 1
   ashenFlask: 0
-  healthRecoveryAmount: 50
-  focusPointAmount: 0
+  healthRecoverAmount: 100
+  focusPointRecoverAmount: 0
   recoveryFX: {fileID: 1399491476850481373, guid: a560f5616b2594eaea55861f723f1347, type: 3}

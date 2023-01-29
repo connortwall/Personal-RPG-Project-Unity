@@ -145,7 +145,7 @@ namespace CW
             HandleLockOnInput();
             HandleTwoHandInput();
             HandleCriticalAttackInput();
-            HandleConsumeableInput();
+            HandleConsumableInput();
         }
         
         public void HandleMoveInput(float delta)
@@ -343,7 +343,7 @@ namespace CW
             }
         }
 
-        private void HandleConsumeableInput()
+        private void HandleConsumableInput()
         {
             if (consume_Input)
             {

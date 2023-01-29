@@ -12,7 +12,7 @@ public class ConsumableItem : Item
    public int currentItemAmount;
 
    [Header("Item Model")] 
-   public GameObject item;
+   public GameObject itemModel;
    
    [Header("Item Animations")] 
    public string consumeAnimation;
@@ -27,6 +27,7 @@ public class ConsumableItem : Item
          playerAnimatorManager.PlayTargetAnimation(consumeAnimation, isInteracting, true);
          
       }
+      // nom ore items
       else
       {
          playerAnimatorManager.PlayTargetAnimation("Shrug", true);
